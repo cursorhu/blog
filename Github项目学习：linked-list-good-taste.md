@@ -1,0 +1,233 @@
+---
+title: Github项目学习：linked-list-good-taste
+date: 2023-03-28 10:30:15
+tags: 数据结构
+categories: github项目学习
+---
+
+本文转载自 [linked-list-good-taste](https://github.com/mkirchner/linked-list-good-taste)，添加了个人理解的注释
+
+# Linked lists, pointer tricks and good taste
+
+* [Introduction](#introduction)
+* [The code](#the-code)
+   * [The CS101 version](#the-cs101-version)
+   * [A more elegant solution](#a-more-elegant-solution)
+* [How does it work?](#how-does-it-work)
+   * [Integrating the head pointer](#integrating-the-head-pointer)
+   * [Maintaining a handle](#maintaining-a-handle)
+* [Going beyond](#going-beyond)
+   * [Inserting before existing items](#inserting-before-existing-items)
+   * [Quick refactor](#quick-refactor)
+   * [Implementing insert_before()](#implementing-insert_before)
+* [Conclusion](#conclusion)
+
+
+## Introduction
+
+In a 2016 [TED interview][ted] (14:10) Linus Torvalds speaks about what he considers *good taste* in coding. As an example, he presents two implementations of item removal in singly linked lists (reproduced below).  In order to remove the first item from a list, one of the implementations requires a special case, the other one does not.  Linus, obviously, prefers the latter.
+
+His comment is:
+
+> [...] I don't want you to understand why it doesn't have the if statement.
+> But I want you to understand that sometimes you can see a problem in a
+> different way and rewrite it so that a special case goes away and becomes the
+> normal case, and that's *good code*. [...] -- L. Torvalds
+
+The code snippets he presents are C-style pseudocode and are simple enough to follow. However, as Linus mentions in the comment, the snippets lack a conceptual explanation and it is not immediately evident how the more elegant solution actually works.
+
+The next two sections look at the technical approach in detail and demonstrate how and why the indirect addressing approach is so neat. The last section extends the solution from item deletion to insertion.
+
+
+## The code
+
+The basic data structure for a singly linked list of integers is shown in Figure 1.
+
+![linked list](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281032617.png)
+
+Numbers are arbitrarily chosen integer values and arrows indicate pointers. `head` is a pointer of type `list_item *` and each of the boxes is an instance of an `list_item` struct, each with a member variable (called `next` in the code) of type `list_item *` that points to the next item.
+
+The C implementation of the data structure is:
+
+**注释：list的item包含两个成员：值和指针变量；list本身是用head指针表示**
+
+```c
+struct list_item {
+        int value;
+        struct list_item *next;
+};
+typedef struct list_item list_item;
+
+struct list {
+        struct list_item *head;
+};
+typedef struct list list;
+
+```
+We also include a (minimal) API:
+
+```c
+/* The textbook version */
+void remove_cs101(list *l, list_item *target);
+/* A more elegant solution */
+void remove_elegant(list *l, list_item *target);
+```
+
+With that in place, let's have a look at the implementations of `remove_cs101()` and `remove_elegant()`. The code of these examples is true to the pseudocode from Linus' example and also compiles and runs.
+
+### The CS101 version
+
+![image-20230328191958119](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281919267.png)
+
+
+```c
+void remove_cs101(list *l, list_item *target)
+{
+        list_item *cur = l->head, *prev = NULL;
+        while (cur != target) {
+                prev = cur;
+                cur = cur->next;
+        }
+        if (prev)
+                prev->next = cur->next;
+        else
+                l->head = cur->next;
+}
+```
+
+**注释：如果将list理解为(值+指针变量)成员组成的一串数据，那么访问一个成员的前置成员就得用经典的双指针法，因为单链表没有"记忆性"，要额外的前置指针保存前置位置。**
+
+**考虑边界条件：1.遍历完了都找不到目标成员；2.前置指针在使用前要判空，如果为空，表明第一个节点就是目标节点，这两种情况都属于上述代码的else case处理**
+
+The standard CS101 approach makes use of two traversal pointers `cur` and `prev`, marking the current and previous traversal position in the list, respectively.  `cur` starts at the list head `head`, and advances until the target is found.  `prev` starts at `NULL` and is subsequently updated with the previous value of `cur` every time `cur` advances. After the target is found, the algorithm tests if `prev` is non-`NULL`. If yes, the item is not at the beginning of the list and the removal consists of re-routing the linked list around `cur`. If `prev` is `NULL`, `cur` is pointing to the first element in the list, in which case, removal means moving the list head forward.
+
+### A more elegant solution
+
+The more elegant version has less code and does not require a separate branch to deal with deletion of the first element in a list.
+
+```c
+void remove_elegant(list *l, list_item *target)
+{
+        list_item **p = &l->head;
+        while (*p != target)
+                p = &(*p)->next;
+        *p = target->next;
+}
+```
+
+The code uses an indirect pointer `p` that holds the address of a pointer to a list item, starting with the address of `head`.  In every iteration, that pointer is advanced to hold the address of the pointer to the next list item, i.e. the address of the `next` element in the current `list_item`.
+When the pointer to the list item `*p` equals `target`, we exit the search loop and remove the item from the list.
+
+
+## How does it work?
+
+The key insight is that using an indirect pointer `p` has two conceptual benefits:
+
+1. It allows us to interpret the linked list in a way that makes the `head` pointer an integral part the data structure. This eliminates the need for a special case to remove the first item.
+2. It also allows us to evaluate the condition of the `while` loop without having to let go of the pointer that points to `target`. This allows us to modify the pointer that points to `target` and to get away with a single iterator as opposed to `prev` and `cur`.
+
+Let's look each of these points in turn.
+
+### Integrating the `head` pointer
+
+The standard model interprets the linked list as a sequence of `list_item` instances. The beginning of the sequence can be accessed through a `head` pointer. This leads to the conceptual model illustrated in Figure 2 above. The `head` pointer is merely considered as a handle to access the start of the list. `prev` and `cur` are pointers of type `list_item *` and always point to an item or `NULL`.
+
+The elegant implementation uses indirect addressing scheme that yields a different view on the data structure:
+
+**注释：核心就是改变对链表数据结构的理解，将链表的最小单元理解为：前置指针 + (值+指针变量)成员，这样需要一个二级指针指向成员内的指针变量，链表也没有特殊性，每个成员一定有非空的前置指针和(值+指针变量)，如下图的蓝色框。**
+
+**这个方法本质上是双指针的优化，只用一个二级指针就可以同时访问目标节点和前置的节点的指针变量，解决了单链表遍历过程中，找到目标节点后无法反向获得前置节点的指针变量的问题。**
+
+![image-20230328192017690](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281920824.png)
+
+
+Here, `p` is of type `list_item **` and holds the address of the pointer to the current list item. When we advance the pointer, we forward to the address of the pointer to the next list item.
+
+In code, this translates to `p = &(*p)->next`, meaning we
+
+1. `(*p)`: dereference the address to the pointer to the current list item
+2. `->next`: dereference that pointer again and select the field that holds the address of the next list item
+3. `&`: take the address of that address field (i.e. get a pointer to it)
+
+This corresponds to an interpretation of the data structure where the list is a a sequence of pointers to `list_item`s (cf. Figure 3).
+
+### Maintaining a handle
+
+An additional benefit of that particular interpretation is that it supports editing the `next` pointer of the predecessor of the current item throughout the entire traversal.
+
+With `p` holding the address of a pointer to a list item, the comparison in the search loop becomes
+
+```c
+while (*p != target)
+```
+
+The search loop will exit if `*p` equals `target`, and once it does, we are still able to modify `*p` since we hold its address `p`. Thus, despite iterating the loop until we hit `target`, we still maintain a handle (the address of the `next` field or the `head` pointer) that can be used to directly modify the pointer that points *to* the item.
+
+This is the reason why we can modify the incoming pointer to an item to point to a different location using `*p = target->next` and why we do not need `prev` and `cur` pointers to traverse the list for item removal.
+
+## Going beyond
+
+It turns out that the idea behind `remove_elegant()` can be applied to yield a particularly concise implementation of another function in the list API:`insert_before()`, i.e. inserting a given item before another one.
+
+### Inserting before existing items
+
+First, let's add the following declaration to the list API in `list.h`:
+
+```c
+void insert_before(list *l, list_item *before, list_item *item);
+```
+
+The function will take a pointer to a list `l`, a pointer `before` to an item in that list and a pointer to a new list item `item` that the function will insert before `before`.
+
+### Quick refactor
+
+**注释：单链表的删除节点和前向插入节点有共同的痛点：找到目标节点后无法反向获得前置节点的指针变量，此二级指针方法完美解决这类问题。**
+
+Before we move on, we refactor the search loop into a separate function
+
+```c
+
+static inline list_item **find_indirect(list *l, list_item *target)
+{
+        list_item **p = &l->head;
+        while (*p != target)
+                p = &(*p)->next;
+        return p;
+}
+
+```
+
+and use that function in `remove_elegant()` like so
+
+```c
+void remove_elegant(list *l, list_item *target)
+{
+        list_item **p = find_indirect(l, target);
+        *p = target->next;
+}
+```
+
+### Implementing `insert_before()`
+
+Using `find_indirect()`, it is straightforward to implement `insert_before()`:
+
+```c
+void insert_before(list *l, list_item *before, list_item *item)
+{
+        list_item **p = find_indirect(l, before);
+        *p = item;
+        item->next = before;
+}
+```
+
+A particularly beautiful outcome is that the implementation has consistent semantics for the edge cases: if `before` points to the list head, the new item will be inserted at the beginning of the list, if `before` is `NULL` or invalid (i.e. the item does not exist in `l`), the new item will be appended at the end.
+
+
+## Conclusion
+
+The premise of the more elegant solution for item deletion is a single, simple change: using an indirect `list_item **` pointer to iterate over the pointers to the list items.  Everything else flows from there: there is no need for a special case or branching and a single iterator is sufficient to find and remove the target item.
+It also turns out that the same approach provides an elegant solution for item insertion in general and for insertion *before* an existing item in particular.
+
+So, going back to Linus' initial comment: is it good taste? Hard to say, but it's certainly a different, creative and very elegant solution to a well-known CS task.
+
+[ted]: https://www.ted.com/talks/linus_torvalds_the_mind_behind_linux

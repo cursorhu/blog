@@ -1,0 +1,95 @@
+# 分屏类配置
+
+## terminator终端分屏
+
+安装：`sudo apt-get install terminator`
+
+terminator分屏常用快捷键：
+
+```text
+在同一个标签内的操作：
+Ctrl+Shift+O
+Split terminals Horizontally.    //水平分割终端
+
+Ctrl+Shift+E
+Split terminals Vertically.    //垂直分割终端
+
+Ctrl+Shift+Right
+Move parent dragbar Right.    //在垂直分割的终端中将分割条向右移动
+
+Ctrl+Shift+Left
+Move parent dragbar Left.    //在垂直分割的终端中将分割条向左移动
+
+Ctrl+Shift+Up
+Move parent dragbar Up.        //在水平分割的终端中将分割条向上移动
+
+Ctrl+Shift+Down
+Move parent dragbar Down.    //在水平分割的终端中将分割条向下移动
+
+Ctrl+Shift+F
+Search within terminal scrollback    //搜索
+
+复制和粘贴：
+光标选中自动复制
+鼠标中键粘贴
+```
+
+## Ubuntu多桌面
+
+```
+创建多桌面workspace： ctrl+alt+方向键（左右）
+
+将当期应用移动到workspace：ctrl+alt+shift+方向键（左右）
+```
+
+## Ubuntu应用分屏
+
+左右分屏：win键+方向键（左右）
+
+上下分屏：不支持，建议使用多桌面
+
+# 截图类配置
+
+## 截图工具和屏幕缩放
+
+1.截图工具：
+
+ubuntu默认开启了wayland，会阻碍第三方截图工具的功能。需要先关闭wayland，使用xorg桌面：
+
+```
+sudo gedit /etc/gdm3/custom.conf 
+```
+
+把 `#WaylandEnable=false` 的#注释去掉，重启生效。再安装flameshot等截图软件，能正常使用功能。
+
+2.屏幕缩放：
+
+setting -> displays -> Fractional Scaling打开，即可支持125%缩放。
+
+屏幕缩放会引起flameshot截图闪烁问题，解决方案：使用以下命令启动flameshot
+
+```
+env QT_AUTO_SCREEN_SCALE_FACTOR=1 flameshot gui
+```
+
+issue参考：[Fails when fractional scaling <> 100% #564](https://github.com/flameshot-org/flameshot/issues/564)
+
+3.截图工具加到快捷键
+
+将以上缩放+无闪烁的flameshot启动命令加到快捷键：
+
+settings-> keyboard -> custom shortcuts -> 添加command和shortcut
+
+# 远程与共享
+
+## Ubuntu远程登录到Windows主机
+
+推荐remmina，同时支持RDP和VNC协议：`sudo apt install remmina`
+
+默认设置需要改：以目标主机的分辨率显示; 监听目标主机的键盘快捷键，在目标主机内的键盘都是对该主机的操作
+
+## Ubuntu访问Windows共享路径
+
+win10共享某个分区盘：右键分区->高级共享->打开读写访问；记录ipconfig的IP
+
+Ubuntu已经安装samba后，在文件管理->其他位置->连接到服务器, 输入win10主机IP，会输入win10主机的用户名，密码，域名后可以连接；只能打开win10已共享的分区盘。

@@ -1,0 +1,14 @@
+## 关闭宏代码块变暗
+
+setting -> 搜索C_Cpp.dimInactiveRegions -> 关闭
+
+## 代码跳转（Go Back和 Go Forword）
+
+VSCode代码跳转（Go Back和 Go Forword）在Ubuntu 和Windows 不一样，如何将Ubuntu改成和windows一致：
+
+setting -> 分别搜索Go Back和Go Forword -> 分别设置快捷键 alt + 方向 -> 提示和已有快捷键冲突，右键删除冲突的快捷键再添加
+
+## 代码跳转（Definition和Reference）
+
+安装C/C++ intelligence插件即可支持
+

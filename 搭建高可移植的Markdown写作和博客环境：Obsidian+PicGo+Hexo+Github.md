@@ -121,6 +121,14 @@ PicGo默认的Github图床不能通过相册删除github仓库的图片，需要
 
 ## Typora配置指南
 
+### typora beta安装
+
+typora-0-11-18是最后一个windows免费版，windows上安装需要额外配置如下：
+
+win+R， regedit， 在计算机\HKEY_CURRENT_USER\SOFTWARE\Typora文件夹右键权限，选择当前windows登录用户，在拒绝列，勾选全部拒绝。
+
+原理是禁止typora beta访问系统时间，避免弹窗。
+
 ### typora图床自动上传
 
 ![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404181658086.png)

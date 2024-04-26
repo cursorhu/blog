@@ -36,7 +36,7 @@ C++，加的到底是什么？
 程序 = 数据结构 + 算法
 程序由全局变量以及众多相互调用的函数组成，算法以函数的形式实现，用于对数据结构进行操作。
 结构化程序设计风格中，变量和函数的关系:
-![image-20221208164648489](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081646566.png)
+![image-20221208164648489](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081646566.png)
 其缺陷在于：
 
  - 结构化程序设计中，函数和其所操作的数据结构，没有直观的联系
@@ -62,7 +62,7 @@ C++，加的到底是什么？
  - 面向对象的程序设计具有“抽象”，“封装”“继承”“多态”四个基本特点。
 
 面向对象设计风格中，变量和函数的关系;
-![image-20221208164703654](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081647726.png)
+![image-20221208164703654](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081647726.png)
 
 ## 语言和风格的无关性
 注意面向过程、面向对象以及其他的风格（如函数式编程等），只是编程风格，其本质都是组织数据结构（事物属性）和算法（对事物的操作）。
@@ -1348,7 +1348,7 @@ a-b 等价于a.operator-(b)
 引用只是标签，可以直接拷贝，等同变量拷贝。封闭类的构造函数会嵌套调用基础类型的拷贝，直到所有成员赋值完为止。
 唯一需要考虑的是包含指针类型成员的类如何拷贝
 如果直接赋值指针而不分配并初始化其指向空间，效果如下:
-![image-20221208164831061](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081648147.png)
+![image-20221208164831061](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081648147.png)
 如不定义自己的赋值运算符，那么S1=S2实际上导致 S1.str和 S2.str
 指向同一地方。
 如果S1对象消亡，析构函数将释放 S1.str指向的空间，则S2消亡时还

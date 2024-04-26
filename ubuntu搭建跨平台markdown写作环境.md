@@ -1,3 +1,5 @@
+# ubuntu搭建跨平台markdown写作环境
+
 ## ubuntu安装picgo
 
 ### 下载picgo安装包：
@@ -38,7 +40,7 @@ chmod +x PicGo-2.3.1.AppImage
 如果Jsdelivr挂了就用github raw url： 
 
 ```
-"customUrl": "https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master"
+"customUrl": "https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master"
 ```
 
 Picgo其他配置如下：
@@ -191,7 +193,7 @@ cursorhu@ubuntu-PC:~/Downloads$ picgo set uploader
 
 ![image-20240416170333787](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404181714278.png)
 
-## 参考
+## 参考文章
 
 https://blog.csdn.net/yefcion/article/details/88412025
 

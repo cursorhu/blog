@@ -19,20 +19,20 @@ UI 编辑模式下使用两种模式：widget编辑模式， slot/signal编辑�
 1. widget编辑模式如下：使用水平、网格布局
 RGB数值控制部分，使用Label,  spinBox和scrollBar三种控件，按先竖直，后水平排列
 RGB颜色显示部分，使用 graphicsView窗口
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202204181201206.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202204181201206.png)
 注意调整布局的比例需要先选中，然后在layout属性调整
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202204181202783.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202204181202783.png)
 
 2.  slot/signal编辑模式
 直接拖拽起始控件和目标控件，设置控件的信号和槽
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202204181203784.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202204181203784.png)
 
 ## 2.自定义槽
 graphicsView窗口预期效果是：只要调整RGB数值，自动显示对应的颜色
 UI界面不能设置控件信号触发自定义槽，需要在代码中实现信号和槽的连接。
 
 1. 右键转到graphicsView窗口的槽函数，自定义为 `Widget::on_rgbChanged()`
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202204181400431.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202204181400431.png)
 函数实现如下：
 ```
 
@@ -96,4 +96,4 @@ Widget::Widget(QWidget *parent) :
 ## 3.测试效果
 - 拖动滑块，对应数值会更新，颜色同步更新
 - 修改数值，对应滑块更新，颜色更新
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202204181410181.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202204181410181.png)

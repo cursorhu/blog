@@ -20,7 +20,7 @@ hexo主页显示摘要，参考 [Hexo Next主题首页配置为只显示部分�
 - 推荐英文字体使用Roboto，中文字体使用 Noto Serif (注：Noto Serif字符集包含chinese/Japanese/korea等，参考 [noto-cjk](https://github.com/notofonts/noto-cjk)；Noto Serif 是宋体但不是宋体思源，见后文)
 - 在[Google字体中国网站](https://www.googlefonts.cn/)搜索框搜索字体英文名添加以上两种字体，产生URI(Uniform Resource Identifier)，复制href字段的引号内容
 
-![image-20230315145422134](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303151454240.png)
+![image-20230315145422134](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303151454240.png)
 
 - 在hexo的next配置文件`hexo\themes\next\_config.yml`的font字段添加host URI和字体名
 
@@ -89,7 +89,7 @@ $font-family-monospace    = get_font_family('codes'), monospace, consolas, Menlo
 
 自此next中英文字体都应该生效，`hexo g + hexo s` 重新部署验证一下发现中文字体似乎不是思源宋体？
 
-![image-20230315160648032](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303151606100.png)
+![image-20230315160648032](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303151606100.png)
 
 原因是Noto Serif != Noto Serif SC (simplified chinese)，Noto Serif SC才是思源宋体
 
@@ -117,4 +117,4 @@ hexo\themes\next\source\css\_variables\base.styl:
 
 验证结果为思源宋体：
 
-![image-20230315155911647](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303151559719.png)
+![image-20230315155911647](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303151559719.png)

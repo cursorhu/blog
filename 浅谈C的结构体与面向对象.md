@@ -109,9 +109,9 @@ categories: c/c++
 
 # 5.结构体的内存分配
 **理论上**结构体的内存占用是成员占用的和。各成员在内存中连续存储的，和数组非常类似，例如结构体变量 stu1、stu2的内存分布如下，共占用 4+4+4+1+4=17字节。
-![1](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061515193.jpeg)
+![1](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061515193.jpeg)
 但实际上，编译器会遵循**内存对齐**规则。实际内存占用大于各成员占用的和。如下图，stu1、stu2 其实占用了 17+3=20 字节
-![2](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061516336.jpeg)
+![2](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061516336.jpeg)
 
 ## 5.1内存对齐概述
 1.CPU怎么访问内存中的数据最高效？
@@ -143,7 +143,7 @@ categories: c/c++
     }
 
 A和B的内存占用：A=24字节，B=16字节。
-![3](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061516111.png)
+![3](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061516111.png)
 结构体内存对齐的计算规则：
 1.默认首地址已对齐（或认为是0地址)
 2.各成员按自己的类型对齐
@@ -176,7 +176,7 @@ char c占1字节，因此占byte[16]
     
     printf("sizeof C: %d, sizeof D: %d\n", sizeof(C), sizeof(D));
 C和D的内存占用：
-![4](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061517211.png)
+![4](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061517211.png)
 新增的char d作为C的成员被分配在第三个8byte区域的第二个字节（byte[17])，嵌套的结构体并不从第四个8byte开始分配，它占用空间还是byte[17]。可见编译器对结构体内存分配不区分成员类型，只根据成员大小来处理。
 
 # 6.联合、位域、枚举
@@ -219,7 +219,7 @@ C和D的内存占用：
     2059, Y, 2059
     3E25AD54, T, AD54
 在内存中数据分布如下（以大端，低字节存高位为例）
-![5](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061517262.jpeg)
+![5](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061517262.jpeg)
 可见数据会相互覆盖，联合可以理解为分时复用的结构体，其空间占用定长，为最大的成员长度，在不同时间，值的含义不同。
 
 ## 6.2位域
@@ -237,7 +237,7 @@ C和D的内存占用：
     	printf("sizeof bs: %d\n", sizeof(bs));
     }
 输出2字节，可见b和c刚好拼成一个unsigned char(8 bit)：
-![6](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061517807.png)
+![6](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061517807.png)
 位域将结构体成员占用的空间从基本数据类型为单位，变成了以二进制位为单位，是更精细的结构体内存分配。
 位域不能超过对应基本类型的二进制位数。
 ## 6.3枚举

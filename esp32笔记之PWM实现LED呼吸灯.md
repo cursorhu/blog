@@ -31,17 +31,17 @@ PWM的调制信号如下：
 
 PWM调制电路通常用RC filter实现：
 
-![Converting-PWM-signals-into-Analog](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202305051659127.jpg)
+![Converting-PWM-signals-into-Analog](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202305051659127.jpg)
 
 PWM一般对具体设备使用固定频率，再调整高电平的占空比决定模拟信号的幅度。
 
 如下图，占空比从0%调节到100%，对应输出电压为0V~5V
 
-![Pulse-Width-Modulation](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202305061100234.jpg)
+![Pulse-Width-Modulation](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202305061100234.jpg)
 
 从原理上讲就是开关控制，在一个周期内调制信号的高电平时间越长，RC电荷积分更多，输出电压越大：
 
-![image-20230505165748199](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202305051657299.png)
+![image-20230505165748199](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202305051657299.png)
 
 ## MicroPython控制PWM
 
@@ -129,7 +129,7 @@ while True:
 
 LED渐变呼吸闪烁：
 
-![mmexport1683287925729](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202305052003803.gif)
+![mmexport1683287925729](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202305052003803.gif)
 
 如果将led duty调整为512，最大亮度会变小，验证了最大占空比决定最大电压
 

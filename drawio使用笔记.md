@@ -11,5 +11,5 @@ categories: tools
 ## 思维导图
 advanced -> 使用central idea, sub-topic, branch绘制
 
-![image-20230920100931945](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202309201009000.png)
+![image-20230920100931945](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202309201009000.png)
 

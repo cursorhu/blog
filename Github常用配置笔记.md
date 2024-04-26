@@ -26,7 +26,7 @@ categories: Git
     git remote add origin git@github.com:github用户名/仓库名.git
 
 .git/config文件内容会出现remote等内容，ssh方式的url是git开头，http(s)方式是http(s)开头
-![image-20221205111653141](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051116187.png)
+![image-20221205111653141](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051116187.png)
 如果是从别人拉过来的仓库，修改后新建仓库，上传遇到`fatal: remote origin already exists`问题，解决方法:
 
     git remote rm origin
@@ -38,7 +38,7 @@ categories: Git
     git commit -m 'first commit'
     git push -f --set-upstream origin master //首次提交
 
-![image-20221205111703940](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051117987.png)
+![image-20221205111703940](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051117987.png)
 完成以后远程可以看得到仓库的文件   
 
 5.创建分支
@@ -54,20 +54,20 @@ categories: Git
 ## 首次配置可能的问题：
 ### push时有RSA key错误
 
-![image-20221205111713234](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051117281.png)
+![image-20221205111713234](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051117281.png)
 因为Git使用SSH连接，而SSH第一次连接需要验证GitHub服务器的Key。确认GitHub的Key的指纹信息是否真的来自GitHub的服务器。解决办法是在本地生成key，配置到github服务器
 （1)创建ssh key
 
     ls -al ~/.ssh
     ssh-keygen -t rsa -C "github用户名"
     cat ~/.ssh/id_rsa.pub
-![image-20221205111721197](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051117255.png)
+![image-20221205111721197](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051117255.png)
 在push三连过程可以设置global全局配置，以后默认push到github
-![image-20221205111728996](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051117055.png)
+![image-20221205111728996](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051117055.png)
 
 （2）配置ssh key到github
 登陆github,头像-settings-new SSH,复制新生成的SSH配置到服务器
-![image-20221205111737339](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051117386.png)
+![image-20221205111737339](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051117386.png)
 （3）需要重新add origin新建仓库（或者网页上新建仓库)，再push，`git status`和`git log`查看分支和日志
 
 ### push时不能使用密码登陆

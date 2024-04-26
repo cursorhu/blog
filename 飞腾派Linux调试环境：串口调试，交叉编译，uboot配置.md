@@ -1,5 +1,33 @@
 # 串口调试环境
 
+## 串口硬件连接
+
+串口线的颜色和功能是对应的，4根线如下：
+
+```
+功能    	   线的颜色
+TX           绿色
+RX           白色
+GND          黑色
+VCC          红色
+```
+
+串口的接口类型取决于开发板接口，飞腾Pi是使用USB转TTL接口，有的开发板是板载串口转USB芯片，外部是USB直连PC，还有的是RS232接口。不管接口类型如何，串口转接芯片一般是CH340/FT232。
+
+![image-20240424142615021](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404241426062.png)
+
+飞腾派接线只用了3根线，没用VCC。注意RX是接到TX， TX是接到RX。
+
+![image-20240424142831480](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404241428560.png)
+
+验证串口连接正常：查找到ttyUSB设备即USB转串口设备连接正常。
+
+```
+ls /dev/ttyUSB0
+```
+
+注：Ubuntu有时串口线找不到ttyUSB0设备，可能跟线的质量或者芯片驱动相关。在Ubuntu下FT232不需要安装驱动能稳定连接。Windows下串口转接芯片一定需要装对应的CH340或FT232驱动才能在设备管理器COM口看到USB设备。
+
 ## Putty 配置串口调试环境
 
 Putty连接串口需要以root用户启动。非root用户启动putty无法设置端口号，波特率等参数。
@@ -33,11 +61,11 @@ Ubuntu22.04环境上有两种方法：
 
 ## Putty记录和查看log
 
-### 1.记录log
+### 记录log
 
 在启动GUI后在session->logging设置记录all output，记得保存设置到session的default配置。
 
-### 2.查看log
+### 查看log
 
 查看log可以使用less显示 + grep过滤；
 

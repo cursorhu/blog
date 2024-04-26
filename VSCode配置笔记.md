@@ -21,7 +21,7 @@ VSCode会将每个工作区的一些配置、扩展、缓存等默认保存在C�
 --user-data-dir "目标路径，例如F:\VSCodeWorkspaceStorage"
 ```
 
-![image-20221208120051137](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081200216.png)
+![image-20221208120051137](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081200216.png)
 
 2.转移已有的workspaceStorage.
 
@@ -60,7 +60,7 @@ File->Preference->KeyboardShortCuts
 
 选择recording keys，直接录入要修改的快捷键
 
-![image-20230220110133891](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202302201101988.png)
+![image-20230220110133891](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202302201101988.png)
 
 ## 项目文件过滤
 
@@ -109,7 +109,7 @@ SSH密钥登录的流程：
 
 - 服务器验证客户端解密的信息是否正确，如果正确则认证通过。
 
-  ![image-20230822110009079](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308221100363.png)
+  ![image-20230822110009079](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308221100363.png)
 
 **(1)Windows客户端生成ssh key**
 
@@ -117,7 +117,7 @@ SSH密钥登录的流程：
 
 如果已经有ssh-key, 不需要重新生成；如果已有的key不能配置生效，参考如下方式生成重命名的ssh-key，后续流程一致。
 
-![image-20230822111509800](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308221115183.png)
+![image-20230822111509800](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308221115183.png)
 
 **(2)Linux服务端生成ssh key**
 
@@ -135,7 +135,7 @@ service sshd restart
 
 ssh配置文件`C:\Users\用户名\.ssh\config`
 
-![image-20230822104703184](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308221047708.png)
+![image-20230822104703184](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308221047708.png)
 
 添加IdentityFile字段，填写windows本机的id_rsa路径，注意没有.pub后缀
 

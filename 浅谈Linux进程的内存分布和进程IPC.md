@@ -21,7 +21,7 @@ categories: linux
 
 因为每个进程可以通过**系统调用**进入内核，因此，Linux内核由系统内的所有进程共享。从具体进程的角度来看，每个进程可以拥有4G字节的虚拟空间。
 
-![image-20221205115648795](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051156842.png)
+![image-20221205115648795](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051156842.png)
 
 注意：
 
@@ -34,7 +34,7 @@ categories: linux
 
 编译好的程序都分为几个段(section)，在程序运行过程中的临时变量还产生堆栈，程序手动分配的内存使用堆, 还有命令行参数和环境变量等配置信息，这些东西都属于进程空间的数据。
 
-![image-20221205115908003](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051159094.png)
+![image-20221205115908003](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051159094.png)
 
 详解如下：
 代码段(Text):存放程序指令，一些只读数据(.rodata)也可归为此类
@@ -54,7 +54,7 @@ BSS段:存放未初始化(默认为0)的全局数据
 
 ## 进程通信的基本思路
 根据上节的内存空间分布，所有进程共享同一个内核空间，最简单的进程通信就是通过 进程A->内核->进程B：
-![1637063328269_12](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051157104.png)
+![1637063328269_12](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051157104.png)
 
 以上虽然可以实现，但有两次拷贝以及上下文切换，其总体思路是管道和共享内存方式的基础。
 
@@ -83,13 +83,13 @@ BSS段:存放未初始化(默认为0)的全局数据
 
 1.创建本进程的管道
 使用pipe函数创建管道文件
-![image-20221205115729244](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051157310.png)
+![image-20221205115729244](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051157310.png)
 
 2.fork子进程，共享管道
-![image-20221205115734973](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051157031.png)
+![image-20221205115734973](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051157031.png)
 
 3.设置管道为单向
-![image-20221205115744442](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051157508.png)
+![image-20221205115744442](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051157508.png)
 
 ## 共享内存
 
@@ -98,7 +98,7 @@ Linux中每个进程都有属于自己的进程控制块（PCB）和地址空间
 两个不同的虚拟地址通过页表映射到物理空间的同一区域，它们所指向的这块区域即共享内存。
 
 共享内存的通信原理：
-![image-20221205115751869](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051157936.png)
+![image-20221205115751869](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051157936.png)
 
 共享内存的关键是一份内存资源被两个进程占用，因此需要信号量等同步机制，实现进程同步与资源互斥。
 

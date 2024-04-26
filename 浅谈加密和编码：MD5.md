@@ -46,7 +46,7 @@ MD5以512位分组来处理输入的信息，且每一分组又被划分为16个
 第三步、装入标准的幻数（四个整数）：标准的幻数（物理顺序）是（A=(01234567) 16 ，B=(89ABCDEF) 16 ，C=(FEDCBA98) 16 ，D=(76543210) 16 ）。如果在程序中定义应该考虑大小端（A=0X67452301L，B=0XEFCDAB89L，C=0X98BADCFEL，D=0X10325476L）。
 第四步、四轮循环运算：循环的次数是分组的个数（N+1）。 最终由4个32bit数据拼成128bit的结果。
 
-![image-20221212143002209](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121430277.png)
+![image-20221212143002209](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121430277.png)
 
 # 4.MD5的安全性
 普遍认为MD5是很安全，因为哈希散列是强抗碰撞的：已知原数据和其MD5值，想通过枚举找到一个相同MD5值的数据，基本不可能。如果暴力破解MD5，其运算时间是不可想象的。

@@ -81,20 +81,20 @@ categories: linux
  - pstree可以查看线程关系
  - LWP:轻量级进程，是用户线程和内核的中间接口。用户级线程连接LWP上便具有内核线程的所有属性。因此可以认为LWP ID对应线程ID
 
-![1](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051534342.png)
+![1](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051534342.png)
 
 (2)gdb attach，管控进程
-![2](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051544779.png)
+![2](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051544779.png)
 
 (3)查看所有线程信息
 *表示当前在1号线程，注意这个ID是GDB attach后分配的，真实线程ID参考LWP
-![3](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051534546.png)
+![3](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051534546.png)
 
 (4)查看线程backtrace
-![4](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051535566.png)
+![4](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051535566.png)
 
 (5)切换线程
-![5](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051535346.png)
+![5](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051535346.png)
 
 (6)单步调试线程
 
@@ -103,7 +103,7 @@ categories: linux
  - `watch 变量`，可见`next 6`后g_mydata + 1
  - `watch`会自动隐式的加断点，后文会看到断点信息
 
-![6](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051535751.png)
+![6](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051535751.png)
 
 (7)断点
 
@@ -112,15 +112,15 @@ categories: linux
  - 注意看watch引入了一个断点11
  - `continue`：继续执行，通常配合断点使用
 
-![7](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051535502.png)
+![7](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051535502.png)
 
 (8)线程外调试+多断点
 两个工作线程都加断点
-![8](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051535139.png)
+![8](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051535139.png)
 一次运行
-![9](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051535180.png)
+![9](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051535180.png)
 继续运行
-![10](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051536672.png)
+![10](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051536672.png)
 
  - Thread2和Thread3即工作线程，Thread1为主线程
  - Thread1会切到工作线程，LWP=6080或6081
@@ -134,16 +134,16 @@ GDB显示主线程切到哪个工作线程，实际是CPU当前在执行哪个�
      gdb < prog_name >
 
 (1)运行
-![11](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051536065.png)
+![11](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051536065.png)
 
 (2)加断点和执行
-![12](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051536275.png)
+![12](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051536275.png)
 
 (3)查看变量值
 `p 变量`：打印变量，和`watch`相比不会加隐含的断点
-![13](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051536108.png)
+![13](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051536108.png)
 
-![14](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051537112.png)
+![14](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051537112.png)
 
 ## core dump文件方式调试
 有关core dump
@@ -208,7 +208,7 @@ cppthread_dump_array.cpp：
     }
 
 运行结果：
-![15](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051538738.png)
+![15](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051538738.png)
 并未发生段错误，更不谈core dump。因为CPP对数组没有越界限制，这是个“合法”行为
 
 (2)使用空指针
@@ -293,31 +293,31 @@ cppthread_dump_nullptr.cpp：
     }
 
 运行结果：
-![16](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051538644.png)
+![16](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051538644.png)
 
 下面gdb调试这个core dump
 
  - 设置core dump文件大小限制为不受限
-![17](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051538876.png)
+![17](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051538876.png)
 最好写入配置文件
-![18](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051538835.png)
+![18](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051538835.png)
 
  - gdb加载程序和core dump文件
-![19](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051538139.png)
+![19](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051538139.png)
 可见siganl 6发生，使进程终止
 
  - 看dump位置，bt或where都可以
-![20](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051538557.png)
+![20](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051538557.png)
 
  - 看所有线程的栈
-![21](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051538027.png)
+![21](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051538027.png)
 
  - 直接看dump附近的代码
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051539217.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051539217.png)
 
 结论：根据bt/where, dump发生时，主进程在在执行67行：
 
-![image-20221205154207720](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051542767.png)
+![image-20221205154207720](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051542767.png)
 
 根据源码，具体是工作线程调用对象的方法时发生
 再看dump打印，正好要打印`m_data = 10`的时候dump，结合main中sleep(10)和工作线程sleep(1)，dump原因是main把对象指针置空了，而两个工作线程还在调用对象的方法，位置是thread_func2的p.printval()处
@@ -410,10 +410,10 @@ cppthread_dump_nullptr.cpp：
 
  - 直接运行方式，要run起来才有线程
 
-![23](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051542989.png)
+![23](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051542989.png)
 
  - backtrace可见两个线程都停止于lock_wait()，其中thread2回溯看到死锁代码在45行
 
-![24](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051546645.png)
+![24](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051546645.png)
 
 对于互斥锁推荐用RAII机制的`std::lock_guard<mutex> lockGuard(m)`，能避免忘记unlock情况。但在此示例中，lock_guard也会双重加锁。

@@ -22,7 +22,7 @@ Arch Linux的ISO[在此下载](https://archlinux.org/download/)
 
 我的配置如下。Profile选择安装desktop Kde, Network选择Use NetworkManager后，Kde Plasma被自动安装，不需要按参考文章手动安装桌面：
 
-![image-20230712164243209](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202307121642425.png)
+![image-20230712164243209](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202307121642425.png)
 
 ## 配置主题
 

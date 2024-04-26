@@ -100,7 +100,7 @@ setting -> keyboard -> shortcuts -> custom shortcut -> 为应用程序添加快�
 
 以截图工具flameshot为例，设置快捷键的command为调用flameshot的命令，截图默认保存到~/Pictures
 
-![image-20230505105544618](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202305051055723.png)
+![image-20230505105544618](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202305051055723.png)
 
 要配置其他flameshot命令的快捷键，用 `man flameshot` 查看，参考 [Keyboard shortcuts for Flameshot](https://flameshot.org/docs/guide/key-bindings/)
 
@@ -134,7 +134,7 @@ sudo apt install timeshift
 
 如下图，用`timeshift --help`查看各种命令，使用`timeshift --restore`恢复指定snapshot
 
-![image-20230508193100794](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202305081931009.png)
+![image-20230508193100794](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202305081931009.png)
 
 情景二：系统无法进入recovery模式，但是备份的snapshot数据还在
 

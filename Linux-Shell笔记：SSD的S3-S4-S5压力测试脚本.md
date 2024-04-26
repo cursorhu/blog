@@ -10,11 +10,11 @@ categories: linux
 
 # 系统电源状态
 ACPI（高级配置与电源接口）是电源配置和接口的规范，供操作系统和应用程序管理所有电源，其定义了几种状态（State）：S1~S6
-![image-20221205155311145](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051553199.png)
+![image-20221205155311145](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051553199.png)
 
 操作系统在ACPI基础上实现各自的电源状态划分
 Linux电源状态划分为如下：
-![image-20221205155406635](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051554689.png)
+![image-20221205155406635](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051554689.png)
 
 其中，常见的几种状态有别称，如S3通常也称Suspend，S4也称Hibernation, S5即shutdown。下面描述这几种状态的区别
 
@@ -238,21 +238,21 @@ s5_stop.sh
 
     ./s3s4.sh s3 999      启动s3测试,运行999次
 
-![image-20221205155429129](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051554212.png)
+![image-20221205155429129](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051554212.png)
 
 ### S4
 S4在内存和硬盘直接读写运行时映像，硬盘需要指定那一块区域用于和内存交换，即交换分区。Linux一切皆文件，交换分区也可以用swapfile配置。以下配置swapfile
-1. df –h 查看挂载点为/对应的文件系统是/dev/nvme0n1p2,根据你具体情况记录![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051554816.png)
+1. df –h 查看挂载点为/对应的文件系统是/dev/nvme0n1p2,根据你具体情况记录![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051554816.png)
 
-2. `blkid`查看UUID值，根据1对应的nvme文件系统记录UUID![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051554581.png)
+2. `blkid`查看UUID值，根据1对应的nvme文件系统记录UUID![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051554581.png)
    
-3. `filefrag –v /swapfile`查看swapfile的物理起始地址，记录physical_offset左侧值![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051554581.png)
+3. `filefrag –v /swapfile`查看swapfile的物理起始地址，记录physical_offset左侧值![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051554581.png)
    
 4. 将UUID和physical_offset值写入grub：
    终端输入gedit /etc/default/grub ，修改以下参数并保存
    `GRUB_CMDLINE_LINUX_DEFAULT="quiet splash resume=UUID=你的UUID值 resume_offset=你的physical_offset值`"
    
-    ![image-20221205155518922](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051555015.png)
+    ![image-20221205155518922](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051555015.png)
    
 5.	重新生成grub: 终端输入 `update-grub` 回车并重启电脑。
 
@@ -260,7 +260,7 @@ S4在内存和硬盘直接读写运行时映像，硬盘需要指定那一块区
 
     ./s3s4.sh s4 999
 
-![image-20221205155749113](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051557197.png)
+![image-20221205155749113](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051557197.png)
 
 ### S5
 自动重启需要先解决账户密码问题

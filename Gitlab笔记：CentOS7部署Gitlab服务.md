@@ -48,13 +48,13 @@ categories: Git
     #重启服务，没改配置直接重启
     gitlab-ctl restart
 
-![image-20221206144455394](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061444445.png)  
+![image-20221206144455394](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061444445.png)  
 似乎服务都正常启动了，实际上可能有各种问题，参考问题记录
 
 # 问题Debug记录
 
 按以上步骤配置好后，访问主机ip:端口，直接弹出502服务端错误
-![image-20221206144542817](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061445877.png)
+![image-20221206144542817](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061445877.png)
 
 ## 配置文件权限问题?
 配置文件生效命令`gitlab-ctl reconfigure`做了以下事情：
@@ -66,12 +66,12 @@ categories: Git
     vim /var/opt/gitlab/gitlab-rails/etc/gitlab.yml
     vim /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml
 
-![image-20221206144606669](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061446719.png)
+![image-20221206144606669](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061446719.png)
 可见配置被自动拷贝到此处，gitlab相关服务读取的是这里的配置项
 
  - 生成服务相关临时文件
 
-![image-20221206144619066](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061446110.png)
+![image-20221206144619066](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061446110.png)
 
 原因：gitlab服务的配置文件在reconfigure时生成于/var/log/gitlab，这个文件目录默认权限不够，有些子服务不能正常运行。
 
@@ -82,7 +82,7 @@ categories: Git
 restart服务，网页即可正常访问gitlab，如果恢复该目录755权限，重启服务会502
 
 每次重新配置，`gitlab-ctl reconfigure`似乎会删除该目录再重新写入
-![image-20221206144636079](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061446151.png)
+![image-20221206144636079](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061446151.png)
 
 因此每次gitlab-ctl reconfigure之后都要`chmod 777`改此目录权限
 
@@ -91,7 +91,7 @@ restart服务，网页即可正常访问gitlab，如果恢复该目录755权限�
 首先确保主机ip是公网能访问的，不是内网ip
 其次看端口是否禁用。在阿里云ECS的安全组策略中查看端口是否允许TCP输入输出
 我把所有端口（1~65535）全部打开了
-![image-20221206144656411](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061446454.png)
+![image-20221206144656411](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061446454.png)
 
 ### 检查前向端口冲突
 gitlab配置文件的external_url就包含前向端口
@@ -100,26 +100,26 @@ gitlab配置文件的external_url就包含前向端口
 
 显示的是nginx服务端口，因为gitlab默认被nginx反向代理了，说明gitlab的代理服务确实占用9030。
 
-![image-20221206144927508](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061449545.png)
+![image-20221206144927508](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061449545.png)
 
 ### 检查子服务的端口
 注意gitlab不只有一个服务，默认配置只设置了前向端口（nginx代理端口），而子服务都没配置端口，默认用了8080，如果有其他服务已经占用8080，可能子服务起不来
 例如unicorn子服务：
 
-![image-20221206144946178](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061449220.png)
+![image-20221206144946178](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061449220.png)
 
 查看子服务状态
 
     gitlab-ctl status
 
-![image-20221206144958510](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061449573.png)
+![image-20221206144958510](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061449573.png)
 
 如果本地已有8080的服务，最好杀掉或换其他端口，否则要手动配置gitlab子服务端口
 
     unicorn['port'] = 9032 （随便一个未使用端口）
     gitlab_workhorse['auth_backend'] = "http://localhost:9032"
 
-![image-20221206145014236](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061450285.png)
+![image-20221206145014236](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061450285.png)
 ### 检查内存资源不足
 
 阿里云2G以下RAM可能会有因内存不足，导致服务不能正常启动。
@@ -145,7 +145,7 @@ gitlab配置文件的external_url就包含前向端口
     swapoff -a > /dev/null
 
 启用分区后运行gitlab，发现已经有一部分数据转移到了swap文件
-![image-20221206145023389](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061450437.png)
+![image-20221206145023389](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061450437.png)
 
 # ssh访问配置
 通过ssh上传下载，需要建立ssh key
@@ -159,7 +159,7 @@ gitlab配置文件的external_url就包含前向端口
 
 添加公钥至gitlab
 
-![image-20221206145031977](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061450049.png)
+![image-20221206145031977](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061450049.png)
 
 # 初始化git项目
 配置git全局用户名，邮箱

@@ -160,13 +160,13 @@ subdir-ccflags-$(CONFIG_PCI_DEBUG) := -DDEBUG
 
 step1: 输入`/` 打开查找，输入要查找的CONFIG名，注意这里不支持模糊匹配
 
-![Screenshot from 2023-08-03 11-52-54](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308031201872.png)
+![Screenshot from 2023-08-03 11-52-54](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308031201872.png)
 
-![Screenshot from 2023-08-03 11-51-31](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308031201364.png)
+![Screenshot from 2023-08-03 11-51-31](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308031201364.png)
 
 step2: 按1跳转到CONFIG对应位置
 
-![Screenshot from 2023-08-03 11-51-55](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308031202070.png)
+![Screenshot from 2023-08-03 11-51-55](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308031202070.png)
 
 ### 直接修改.config文件
 
@@ -178,7 +178,7 @@ ftrace是printk之外，能观测driver/kernel的函数(symbol)调用流程和�
 
 ftrace的系统框图如下，只需要配置用户空间暴露的trace文件，就可以读取kernel的trace buffer信息：
 
-![524572_1276915819YAfE](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202309071044981.jpg)
+![524572_1276915819YAfE](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202309071044981.jpg)
 
 ftrace的完整使用教程和原理，参考：
 

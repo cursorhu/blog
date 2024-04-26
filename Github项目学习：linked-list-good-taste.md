@@ -43,7 +43,7 @@ The next two sections look at the technical approach in detail and demonstrate h
 
 The basic data structure for a singly linked list of integers is shown in Figure 1.
 
-![linked list](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281032617.png)
+![linked list](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281032617.png)
 
 Numbers are arbitrarily chosen integer values and arrows indicate pointers. `head` is a pointer of type `list_item *` and each of the boxes is an instance of an `list_item` struct, each with a member variable (called `next` in the code) of type `list_item *` that points to the next item.
 
@@ -77,7 +77,7 @@ With that in place, let's have a look at the implementations of `remove_cs101()`
 
 ### The CS101 version
 
-![image-20230328191958119](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281919267.png)
+![image-20230328191958119](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281919267.png)
 
 
 ```c
@@ -138,7 +138,7 @@ The elegant implementation uses indirect addressing scheme that yields a differe
 
 **这个方法本质上是双指针的优化，只用一个二级指针就可以同时访问目标节点和前置的节点的指针变量，解决了单链表遍历过程中，找到目标节点后无法反向获得前置节点的指针变量的问题。**
 
-![image-20230328192017690](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281920824.png)
+![image-20230328192017690](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281920824.png)
 
 
 Here, `p` is of type `list_item **` and holds the address of the pointer to the current list item. When we advance the pointer, we forward to the address of the pointer to the next list item.

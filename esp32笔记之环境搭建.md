@@ -130,14 +130,14 @@ LED如何控制，要根据esp32具体开发板的电路图找到LED相关的GPI
 
 如下图，我的esp32 LED连接到GPIO2(IO2)，并且GPIO2输出高电平时LED导通
 
-![image-20230504200335998](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202305042003091.png)
+![image-20230504200335998](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202305042003091.png)
 
-![image-20230504200411499](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202305042004848.png)
+![image-20230504200411499](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202305042004848.png)
 
 选择VSCode的Pymakr Project -> connect device -> ’sync project to device‘，上传该LED python代码到esp32上运行；右键Pymakr Project的Hard reset device以后执行python代码
 
-![image-20230505111655320](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202305051116409.png)
+![image-20230505111655320](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202305051116409.png)
 
 esp32 GPIO2的LED不停闪烁
 
-![mmexport1683202673677](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202305051156061.gif)
+![mmexport1683202673677](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202305051156061.gif)

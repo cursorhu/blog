@@ -34,7 +34,7 @@ C++用类的“继承”描述层层细化的类及其成员变量的关系，�
  - 派生类拥有基类的全部成员函数和成员变量，不论是private、 protected、 public。但是派生类的成员函数不能访问基类中的private成员
 
 一个管理学生的类继承：
-![image-20221208165130260](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081651314.png)
+![image-20221208165130260](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081651314.png)
 派生类语法:
 
     class 派生类名： public 基类名
@@ -76,7 +76,7 @@ C++用类的“继承”描述层层细化的类及其成员变量的关系，�
     {
         int v3;
     };
-![image-20221208165140659](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081651715.png)
+![image-20221208165140659](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081651715.png)
 
 ## 类继承的覆盖
 类内的同名非同参的函数叫函数重载，那么基类与派生类的同名函数呢？
@@ -110,7 +110,7 @@ C++用类的“继承”描述层层细化的类及其成员变量的关系，�
     obj.base::i = 1; //访问基类成员i
 
 内存分布:
-![image-20221208165150851](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081651894.png)
+![image-20221208165150851](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081651894.png)
 以上只是示例，一般来说，基类和派生类不定义同名成员变量，但经常有同名成员函数，所以覆盖通常用于成员函数覆盖。
 
 ## 类继承的成员访问控制
@@ -299,7 +299,7 @@ C++用“复合”表示类的相交关系。
 CHuman派生
 
 继承逻辑关系：
-![image-20221208165210195](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081652246.png)
+![image-20221208165210195](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081652246.png)
 
 复合关系顶层设计例子：
 
@@ -349,7 +349,7 @@ CHuman派生
         CDog * dogs[10];
     };
 逻辑关系:
-![image-20221208165220338](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081652390.png)
+![image-20221208165220338](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081652390.png)
 
 # 继承的不足
 ## 继承方式的访问限制
@@ -587,7 +587,7 @@ pBase已经被赋值为指向derived d的指针，不能调用base类的private�
 现在的需求是：已经有CWolf、CGhost两种怪物，需要设计新的怪物CThunderBird，并能满足和其他怪物的交互
 顶层设计:
 设置基类 CCreature，并且使CDragon, CWolf等其他类都从CCreature派生而来
-![image-20221208165241029](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081652097.png)
+![image-20221208165241029](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081652097.png)
 非多态的派生类设计：
 由于每个怪物对于其他怪物的攻击和反击都是不同的，每个怪物类都要设计一组Attack和FightBack：
 
@@ -695,7 +695,7 @@ pBase已经被赋值为指向derived d的指针，不能调用base类的private�
     pBase = &b;
     pBase->Print();
 
-![image-20221208165259927](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081652980.png)
+![image-20221208165259927](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081652980.png)
 如果当前指针指向派生类，则调用派生类的虚函数：
 
     Derived d;
@@ -703,7 +703,7 @@ pBase已经被赋值为指向derived d的指针，不能调用base类的private�
     pBase = pDerived;
     pBase->Print();
 
-![image-20221208165311145](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081653211.png)
+![image-20221208165311145](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081653211.png)
 动态联编的实现：
 多态的函数调用语句被编译成一系列根据基类指针所指向的（或基类引用所引用的)对象中存放的虚函数表的地址，在虚函数表中查找虚函数地址，并调用虚函数的指令
 而普通函数是编译过程中确定了成员函数的入口地址，不存在运行时根据对象来改变某个函数的入口地址。

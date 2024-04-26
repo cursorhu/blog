@@ -12,9 +12,9 @@ categories: linux
 
 关于PCIe tree的bus/device的详细architecture，参考LDD3和Mastering Linux Device Driver Development - John Madieu
 
-![image-20230829111444515](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308291114824.png)
+![image-20230829111444515](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308291114824.png)
 
-![image-20230829111727760](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308291117111.png)
+![image-20230829111727760](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308291117111.png)
 
 > Root complex (RC): This refers to the PCIe host controller in the SoC. It can access the main memory without CPU intervening, which is a feature used by other devices to access the main memory. They are also known as Host-to-PCI bridges.
 >
@@ -136,7 +136,7 @@ f0: 50 01 00 00 00 00 00 4c b5 0f 21 01 04 00 00 84
 
 详细register mapping参考PCI Express Base Spec.
 
-![image-20230829112915119](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308291129433.png)
+![image-20230829112915119](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308291129433.png)
 
 ### PCI device的创建过程
 
@@ -144,7 +144,7 @@ f0: 50 01 00 00 00 00 00 4c b5 0f 21 01 04 00 00 84
 
 PCI device包括PCI driver, PCI core driver, Kobject三个层次，并在用户层sysfs反映device和driver。
 
-![image-20230830170650433](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308301706671.png)
+![image-20230830170650433](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308301706671.png)
 
 ### 使用sysfs操作pci device
 
@@ -482,15 +482,15 @@ PCIe的AER是PCIe spec协议的标准功能，AER涉及到Error信号产生，�
 
 Error分类：
 
-![image-20230825171440881](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308251714033.png)
+![image-20230825171440881](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308251714033.png)
 
 Error信号在数字逻辑的处理流水：
 
-![image-20230825171423678](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308251714855.png)
+![image-20230825171423678](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308251714855.png)
 
 AER的capability regsiter:
 
-![image-20230825171511047](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308251715226.png)
+![image-20230825171511047](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308251715226.png)
 
 #### PCIe AER driver摘要
 
@@ -512,7 +512,7 @@ CONFIG_ACPI_APEI_PCIEAER=n
 CONFIG_PCIAER_INJECT=n
 ```
 
-![image-20230825175611772](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308251756929.png)
+![image-20230825175611772](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308251756929.png)
 
 #### 示例：ACS violation error的debug过程
 
@@ -532,7 +532,7 @@ SD express card的切换是包含PCIe linkdown和linkup的过程，会有两次h
 
 Bad case的log中，发现如下两种AER error report:
 
-![image-20230829114906631](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308291149954.png)
+![image-20230829114906631](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308291149954.png)
 
 a. RxErr
 
@@ -562,11 +562,11 @@ b. ACS Violation
 
 PCIe协议分析抓包发现一个可疑的vendor defined message，可能是对应上述错误信息：
 
-![image-20230829115802177](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308291158420.png)
+![image-20230829115802177](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308291158420.png)
 
 ACS violation在PCIe spec描述如下：
 
-![image-20230829115115392](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202308291151689.png)
+![image-20230829115115392](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202308291151689.png)
 
 (4)原因和解决办法
 

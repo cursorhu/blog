@@ -11,7 +11,7 @@ Linux MMC driver是支持包括SD卡，eMMC卡等等，属于MultiMediaCard设�
 mmc源码分为core/host两层，是为了解耦：
 - 通用的SD/eMMC流程(core)
 - 具体的硬件操作流程(host)，在此层又可分为通用的SDHCI框架和非SDHCI框架，各eMMC/SD host厂商实现最底层driver时，可以遵循SDHCI框架下的API, 间接实现core层定义的方法(driver称为operations), 也可以不遵循SDHCI框架，直接实现core层定义的方法。
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202203301058425.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202203301058425.png)
 
 本文重点关注mmc框架对SD卡驱动的支持
 
@@ -30,8 +30,8 @@ UHS即Ultra High Speed, express也表示高速，这三代SD卡的读写速度�
 - UHSII: 156~624MB/s
 - SD express: 985MB/s
 
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202203301119947.png)
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202203301120184.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202203301119947.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202203301120184.png)
 
 ### 1.2 Linux MMC框架对SD卡的支持
 基本概念：只有mmc框架的core层支持某种SD模式，host层才能实现这种模式；如果core层都不支持，只能厂商自己开发core层，以patch补丁的方式发布。
@@ -79,7 +79,7 @@ make install #安装内核(包括更新模块信息)
 编译完成后会自动update-grub, 重启后选择编译好的kernel版本启动。
 
 也可以设置默认启动的kernel，编辑/etc/default/grub的`GRUB_DEFAULT="1>X"`, 其中1表示从advanced选项启动，X表示从哪个kernel启动(0 based)，例如下图如果默认要从5.19启动，X设置为0，默认从5.8.0-rc4启动，X设置为6.
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202208171414943.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202208171414943.png)
 配置完毕必须要update-grub重启生效
 
 - 遇到的问题
@@ -152,7 +152,7 @@ Try to disable CONFIG_DEBUG_INFO_BTF
 ### 2.4 手动替换MMC模块
 
 #### 2.4.1 UHS-II相关模块的依赖关系
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202203301640662.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202203301640662.png)
 
 可以从mmc/host的Kconfig得知依赖：
 ```
@@ -167,9 +167,9 @@ config MMC_SDHCI_UHS2
 ```
 
 使用`lsmod`可以得知module依赖关系，如下图，sdhci_uhs2被sdhci_pci引用1次, sdhci被sdhci_uhs2和sdhci_pci引用2次
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202203301645712.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202203301645712.png)
 `modinfo`可以得知已加载module的.ko路径
-![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202203301645737.png)
+![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202203301645737.png)
 
 #### 2.4.2 手动卸载和装载module
 卸载和装载都要按依赖顺序处理，shell脚本如下.

@@ -5,7 +5,59 @@ tags: Git
 categories: Git
 ---
 
-# 初始化git和github仓库
+# Github常用配置笔记
+## 配置SSH登录（Github，Gitlab等各种git server通用）
+
+配置SSH登录的目的是git操作免密码验证，方便拉取和上传代码。
+
+参考：https://segmentfault.com/a/1190000043924833
+
+下面是全局使用唯一的git账号和SSH key；若要为个人和公司使用不同git账号，参考链接。
+
+```
+cursorhu@DESKTOP-73G2O3N MINGW64 /c/gitlab-bht
+$ git config --global user.name thomas.hu
+
+cursorhu@DESKTOP-73G2O3N MINGW64 /c/gitlab-bht
+$ git config --global user.email thomas.hu@o2micro.com
+
+cursorhu@DESKTOP-73G2O3N MINGW64 /c/gitlab-bht
+$ ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/cursorhu/.ssh/id_rsa):
+/c/Users/cursorhu/.ssh/id_rsa already exists.
+Overwrite (y/n)?
+
+cursorhu@DESKTOP-73G2O3N MINGW64 /c/gitlab-bht
+$ cat /c/Users/cursorhu/.ssh/id_rsa
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+....
+2hdYrBeOK+vu1LAAAACGN1cnNvcmh1AQI=
+-----END OPENSSH PRIVATE KEY-----
+
+cursorhu@DESKTOP-73G2O3N MINGW64 /c/gitlab-bht
+$ cat /c/Users/cursorhu/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDONvU2p10NVjRhu6UGlEMsRWqhbo16zK2Tnqg8....chI60tVZHozCK9PMKZd4dE9RoYMXpJWTo6uIRKEV41qHfaiipfsu1ibRCj1drz/3BTs= cursorhu
+```
+
+最后将id_rsa.pub公钥内容添加到github或者gitlab或其他git server的账号设置页面中，无需登录即可git clone，git push。
+
+```
+cursorhu@DESKTOP-73G2O3N MINGW64 /c/gitlab-bht
+$ git clone git@10.52.1.103:software/storport.git
+Cloning into 'storport'...
+remote: Enumerating objects: 12830, done.
+remote: Counting objects: 100% (12830/12830), done.
+remote: Compressing objects: 100% (3441/3441), done.
+remote: Total 12830 (delta 9621), reused 12368 (delta 9251)
+Receiving objects: 100% (12830/12830), 259.92 MiB | 52.21 MiB/s, done.
+Resolving deltas: 100% (9621/9621), done.
+```
+
+
+
+## 初始化git和github仓库
 
 1.安装git
 
@@ -90,7 +142,7 @@ Github setting -> Developer setting -> Personal access token -> Generate a New T
 git config --global http.version HTTP/1.1
 ```
 
-# Github clone使用国内镜像
+## Github clone使用国内镜像
 
 国内搞开发最痛苦的就是限速+断开连接，github clone经常失败。推荐国内镜像服务作为代理进行git clone，将原git地址的github.com替换成代理地址即可。参考 [无需代理直接加速各种 GitHub 资源拉取](https://zhuanlan.zhihu.com/p/463954956)
 
@@ -113,9 +165,9 @@ $ git config --global --unset url.https://github.com/.insteadof
 
 解决版本：下载release版本的zip包，绕开git clone操作。
 
-# Github连接报错问题 
+## Github连接报错问题 
 
-## OpenSSL errno 10054
+### OpenSSL errno 10054
 
 一劳永逸的解决办法：git bash -> git config --global http.sslVerify "false"
 

@@ -9,7 +9,7 @@ categories: Git
 
 ## 拉取和同步
 
-    git clone http://xxx.xxx.git //http方式, 从远程clone仓库
+    git clone http://xxx.xxx.git //http方式, 从远程clone仓库，注意这种方式只clone master到本地，本地要其他分支要手动checkout branchname.
     git pull //拉取远程分支
     git branch //查看本地
     git branch -a //查看远程和本地
@@ -52,15 +52,28 @@ categories: Git
 
     git branch -m OLD_NAME NEW_NAME
 
+## 更换远程
+
+```
+# 重新设置远程仓库
+git remote set-url origin https://gitee.com/xx/xx.git (新地址)
+# 查看远端地址
+git remote -v
+# 更换完后的示例：
+origin  git@10.22.1.90:thomas.hu/o2link-jev323.git (fetch)
+origin  git@10.22.1.90:thomas.hu/o2link-jev323.git (push)
+```
+
 ## 版本比较
 
 可以用`git diff --help`直接查看git diff的Manual Page
 
     git diff COMMIT_ID //比较本地和某commit_id的内容
     git diff ID1 ID2 //比较两个提交的内容，比较新增时，旧版本在前，新版本在后
-    git diff <path of file> //比较本地某文件的内容
-    git diff --name-only ID1 ID2 //只显示有差异的文件名列表
-    git diff <commit>..<commit> [<path>…] //比较两个提交中指定文件名或者路径的差异
+    git diff --name-only ID1 ID2 //只显示有差异的文件名列表，不显示内容
+    git diff <path> //比较某文件夹下所有文件的差异
+    git diff <path>/*.c //比较指定路径下所有.c文件的差异
+    git diff <commit>..<commit> [<path>…] //比较两个提交中指定文件或路径的差异
 
 ## 版本回退
 
@@ -133,7 +146,82 @@ git reflog && git reset --hard commit-id
 
 两次提交已合成一次（新的）提交
 
+## git clone远程所有分支到本地
 
+仓库备份时需要一次git clone所有远程分支到本地，默认的git clone是只有master分支到本地，如果远程（origin remote）仓库没了，git checkout也无法拉取其他分支。
+
+方法：
+
+手动创建仓库文件夹名，在此目录open git bash 
+
+使用 `git clone --mirror` 命令克隆你的仓库，`--mirror` 选项设置包含所有分支的源仓库的镜像。
+
+以下克隆了远程仓库整个镜像repo.git, 并保存到本地项目文件夹的.git
+
+```
+git clone --mirror git://xxx/repo.git .git
+```
+
+注意--mirror命令会将仓库设置为裸仓库。要将其变回常规仓库，请将 `git config` 的 `bare` 布尔值更改为 `false`
+
+```
+git config --bool core.bare false
+```
+
+使用 `git reset` 命令设置 `HEAD`。它从当前文件夹中获取所有内容并在本地计算机上创建所有分支。
+
+```
+git reset --hard
+```
+
+最后使用git branch查看本地仓库的分支列表，和git branch -a的远程分支完全一样。
+
+因为此方式是完整的镜像clone，所以分支和tag都和远程完全一样。
+
+示例：
+
+```
+cursorhu@DESKTOP-73G2O3N MINGW64 /e/801-software-team-git/storport
+$ git clone --mirror git@10.52.1.103:software/storport.git .git
+Cloning into bare repository '.git'...
+remote: Enumerating objects: 12836, done.
+remote: Counting objects: 100% (12836/12836), done.
+remote: Compressing objects: 100% (3447/3447), done.
+remote: Total 12836 (delta 9626), reused 12368 (delta 9251)
+Receiving objects: 100% (12836/12836), 259.92 MiB | 47.75 MiB/s, done.
+Resolving deltas: 100% (9626/9626), done.
+
+cursorhu@DESKTOP-73G2O3N MINGW64 /e/801-software-team-git/storport (master)
+$ git config --bool core.bare false
+
+cursorhu@DESKTOP-73G2O3N MINGW64 /e/801-software-team-git/storport (master)
+$ git reset --hard
+HEAD is now at 2ada62d 1.change .sys file name to bhtsddr.sys; 2.change version to 07/20/2020,29.1.3.1010
+
+cursorhu@DESKTOP-73G2O3N MINGW64 /e/801-software-team-git/storport (master)
+$ git branch
+  * master
+  storport
+  storport_win10
+  storport_win11
+  ...
+```
+
+
+
+# gitignore语法
+
+参考：[git-scm.com/docs/gitignore](https://git-scm.com/docs/gitignore)
+
+参考：[.gitignore文件的配置使用](https://zhuanlan.zhihu.com/p/52885189)
+
+示例：
+
+```
+/**/MDK-ARM/stm32f072c8t6/  		#忽略stm32f072c8t6文件夹的所有文件
+!/**/MDK-ARM/stm32f072c8t6/*.sct 	#不要忽略stm32f072c8t6文件夹的.sct文件
+/**/MDK-ARM/*.bin
+```
 
 # 多人提交的冲突解决办法
 
@@ -197,7 +285,7 @@ A和B同时开发某项目的同一个分支，A拉取最新版本1.0后，在�
 
 
 
-# 从另一个分支拉取指定的几个commit内容
+# 从分支拉取指定的commit
 
 A和B都在git的master分支提交代码，一天发现master某个版本有问题，回退n各版本都找不到是谁提交引起的问题，由于master还要作稳定测试等其他用途，决定先回退master分支到较早的指定版本，而master最新版和稳定版之间提交的内容，分别由各自A和B“认领”，拉取master上自己提交的功能到自己的分支，debug好以后在合并回master。
 需求：
@@ -637,3 +725,4 @@ Updated 1 path from the index
 ```
 
 合并完以后用beyond compare确认一下两个版本的exe是完全一致的，也可以用git diff看一下合并前后二进制文件是否有差异。
+

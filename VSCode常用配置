@@ -12,3 +12,7 @@ setting -> 分别搜索Go Back和Go Forword -> 分别设置快捷键 alt + 方�
 
 安装C/C++ intelligence插件即可支持
 
+### 查找文件
+
+win: ctrl + p，输入文件名查找是否存在
+

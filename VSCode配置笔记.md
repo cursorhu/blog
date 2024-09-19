@@ -5,6 +5,8 @@ tags: vscode
 categories: vscode
 ---
 
+# VSCode配置笔记
+
 ## 修改工作区存储目录
 
 VSCode会将每个工作区的一些配置、扩展、缓存等默认保存在C盘的AppData\Code\workspaceStorage，使用一段时间后数据能达到上十GB。
@@ -145,3 +147,31 @@ Host 10.52.4.63
   User cursorhu
   IdentityFile "C:\Users\thomas.hu\.ssh\id_rsa"
 ```
+
+## 关闭宏代码块变暗
+
+setting -> 搜索C_Cpp.dimInactiveRegions -> 关闭
+
+## 代码跳转（Go Back和 Go Forword）
+
+VSCode代码跳转（Go Back和 Go Forword）在Ubuntu 和Windows 不一样，如何将Ubuntu改成和windows一致：
+
+setting -> 分别搜索Go Back和Go Forword -> 分别设置快捷键 alt + 方向 -> 提示和已有快捷键冲突，右键删除冲突的快捷键再添加
+
+## 代码跳转（Definition和Reference）
+
+安装C/C++ intelligence插件即可支持
+
+### 查找文件
+
+win: ctrl + p，输入文件名查找是否存在
+
+## 关闭悬浮框（类型提示）
+
+setting里面设置hover为false
+
+```
+"editor.hover.enabled": false,
+"editor.parameterHints.enabled": false,
+```
+

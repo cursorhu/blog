@@ -73,17 +73,15 @@ Driver Pair Model是Diver接口函数DDI的集合，独立的功能例如创建�
 
 - Storport + storage miniport：https://learn.microsoft.com/en-us/windows-hardware/drivers/storage/storport-miniport-drivers
 
-  这个Driver Model支持厂商实现SD host驱动，但其数据和流程定义很多是针对SCSI/NVMe等大容量Disk设备，对于SD host/device没有专门的定义；此外Storport从Win11开始禁用了很多WDM DDI，对Win11兼容性不好评估（可能有Bug）
+  这个Driver Model支持厂商实现SD host驱动，但其数据和流程定义很多是针对SCSI/NVMe等大容量Disk设备，对于SD host/device没有专门的定义；此外Storport从Win11开始禁用了很多WDM DDI，代码开发限制多。
 
 - sdport + sdhci-miniport：https://learn.microsoft.com/en-us/samples/microsoft/windows-driver-samples/standard-sd-host-controller-miniport/
 
-  这个Driver Model支持厂商实现SD host驱动，但是从2016年就停止维护，微软不建议使用。
+  实现SD protocol的port driver框架，支持厂商实现vendor SD host驱动，但API文档已停止维护, sample code有维护（win11）。
 
 - sdbus + sddisk: https://learn.microsoft.com/en-us/windows-hardware/drivers/sd/sd-card-driver-stack
 
-  微软的Inbox SD驱动使用此框架；但不支持其他厂商自定义SD host驱动，只支持SD card厂商去写disk driver。这个框架相当于微软私有的SD host框架。
-
-结论：在Storport Model能很好兼容最新Windows OS，且满足SD host功能的情况下，优先使用Storport（miniport默认使用WDM DDI）；在Storport Model有不可避免的限制导致无法满足Windows OS的SD host功能开发时，使用Kernel Mode WDF框架，完全放弃Storport框架。
+  微软的Inbox SD驱动使用此框架；只支持SD/SDIO device厂商去写device driver，不支持厂商实现SD host驱动。
 
 ### 微软的Driver Model选型的参考文档
 

@@ -23,7 +23,7 @@ categories: IC
 
 高速信号的PCB电路设计和信号完整性密切相关，例如下图是PCB使用FR4材料和Megtron6材料，信号-频率函数显示衰减度不同。
 
-![Attenuation versus Frequency as a function of PCB material](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202304101118830.png)
+![Attenuation versus Frequency as a function of PCB material](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202304101118830.png)
 
 ## ReDriver
 
@@ -37,7 +37,7 @@ Redriver类似通信系统中的基站，其接收传输线路中的信号，重
 
 其RX, EQ接收PCIe信号源的TX, EQ信号，redrive生成原始信号后再从TX, EQ发送给接收端。
 
-![Single lane redriver block diagram](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202304101126665.png)
+![Single lane redriver block diagram](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202304101126665.png)
 
 (2)USB redriver
 
@@ -51,4 +51,4 @@ Redriver类似通信系统中的基站，其接收传输线路中的信号，重
 
 如下SD redriver接收SD host的几个信号并重新生成：SD clock, SD cmd, SD data, Vdd power。
 
-![image-20230410113046013](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202304101130119.png)
+![image-20230410113046013](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202304101130119.png)

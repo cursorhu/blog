@@ -56,7 +56,7 @@ C/C++ Edit Configurations (UI) ：
 
 在Include path添加HAL库定义的路径：这里直接用**递归搜索，类似.gitignore的语法，不需要指定到具体的Drivers/STM32FXXX_HAL_Driver/Inc路径。
 
-![image-20240429104934058](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404291104878.png)
+![image-20240429104934058](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404291104878.png)
 
 C/C++ Edit Configurations (JSON)方式的配置，UI配置也会反应在此 ：
 
@@ -87,6 +87,6 @@ C/C++ Edit Configurations (JSON)方式的配置，UI配置也会反应在此 ：
 
 现在可以tab补全STM32 HAL的所有库函数，可以彻底抛弃STM32CubeIDE的编辑界面：)
 
-![image-20240429105530310](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404291104289.png)
+![image-20240429105530310](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404291104289.png)
 
 ## 用STM32CubeIDE和J-link调试和烧录

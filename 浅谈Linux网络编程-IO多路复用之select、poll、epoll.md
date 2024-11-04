@@ -23,9 +23,9 @@ IO多路复用适用如下场合：
 # select实现
 
 逻辑时序：
-![1](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051401453.png)
+![1](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051401453.png)
 具体实现：
-![2](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051401118.png)
+![2](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051401118.png)
 
 fd_set(监听的端口个数)：32位机默认是1024个，64位机默认是2048。
 
@@ -48,7 +48,7 @@ poll的实现和select非常相似，只是描述fd集合的方式不同，poll�
 
 # epoll
 epoll支持水平触发和边缘触发，最大的特点在于边缘触发，它只告诉进程哪些fd刚刚变为就绪态，并且只会通知一次。还有一个特点是，epoll使用“事件”的就绪通知方式，通过epoll_ctl注册fd，一旦该fd就绪，内核就会采用类似callback的回调机制来激活该fd，epoll_wait便可以收到通知。
-![3](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051401522.png)
+![3](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051401522.png)
 
 ## epoll的几大改进
 epoll既然是对select和poll的改进，就应该能避免上述的三个缺点。那epoll都是怎么解决的呢？在此之前，我们先看一下epoll和select和poll的调用接口上的不同，select和poll都只提供了一个函数——select或者poll函数。而epoll提供了三个函数，epoll_create,epoll_ctl和epoll_wait，epoll_create是创建一个epoll句柄；epoll_ctl是注册要监听的事件类型；epoll_wait则是等待事件的产生。
@@ -69,13 +69,13 @@ epoll既然是对select和poll的改进，就应该能避免上述的三个缺�
 
 # select、poll、epoll区别
 1. 支持一个进程所能打开的最大连接数
-![4](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051402990.png)
+![4](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051402990.png)
 
 2. FD剧增后带来的IO效率问题
-![5](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051402536.png)
+![5](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051402536.png)
 
 3. 消息传递方式
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051403370.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051403370.png)
 
 # 总结
 在选择select，poll，epoll时要根据具体的使用场合以及这三种方式的自身特点：

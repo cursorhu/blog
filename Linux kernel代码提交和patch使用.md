@@ -58,15 +58,15 @@ MMC子系统主要包含SD card, eMMC card, SDIO几部分，Kernel Mainline的�
 
 Linux MMC子系统的维护者可以在[patchwork.kernel.org](https://patchwork.kernel.org/)的MMC development的about页面看到：
 
-![image-20230309163541697](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303091635752.png)
+![image-20230309163541697](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303091635752.png)
 
 在patch页面可以搜索以[UHS-II为关键字的相关patch](https://patchwork.kernel.org/project/linux-mmc/list/?q=UHS-II&archive=both&series=&submitter=&delegate=&state=*)
 
-![image-20230309162128061](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303091621148.png)结果如下：
+![image-20230309162128061](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303091621148.png)结果如下：
 
-![image-20230309162327522](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303091623615.png)
+![image-20230309162327522](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303091623615.png)
 
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303091623615.png) 
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303091623615.png) 
 
 具体看一下上面这些UHS-II patch的内容和reviewer的评论：
 
@@ -285,7 +285,7 @@ git diff drivers/mmc/core/block.h
 
 在kernel.org可以看到有很多Kernel版本之间有patch可以用于升级kernel，例如从kernel 4.19.275升级到5.4.234，可以下载并安装patch-5.4.234.xz
 
-![image-20230309194230288](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303091942357.png)
+![image-20230309194230288](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303091942357.png)
 
 #### patchwork社区的第三方patch 
 
@@ -295,7 +295,7 @@ git diff drivers/mmc/core/block.h
 - mbox: 在diff基础上包含了邮件信息（MIME信息）
 - series: 整个功能的所有patch系列的mbox合并内容，包括邮件信息（MIME信息）
 
-![image-20230309194559245](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303091945285.png)
+![image-20230309194559245](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303091945285.png)
 
 Patch命令使用以上的.diff文件，有的也命名为.patch文件
 
@@ -374,7 +374,7 @@ git describe --contains <commit-id>
 
 在[linux kernel github](https://github.com/torvalds/linux) 下拉tag列表，找接近patch申请时间的kernel release版本，可见kernel version < 4.0是此patch可能适用的版本
 
-![image-20230313113324650](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303131133722.png)
+![image-20230313113324650](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303131133722.png)
 
 （2）patch内容的函数名和上下文
 
@@ -479,11 +479,11 @@ patch原文件drivers/mmc/core/core.c搜索函数名对应的hunk内容，得知
 
 去bootlin.com查找[kernel 3.18的core.c代码](https://elixir.bootlin.com/linux/v3.18/source/drivers/mmc/core/core.c)如下(直接搜索drivers/mmc/core/core.c定位到文件，然后在core.c文件ctrl+F查找行数2287)，2287行对不上当然patch fail。
 
-![image-20230313192134365](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303131921412.png)
+![image-20230313192134365](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303131921412.png)
 
 根据patch提交时间，其大概率是使用3.18~4.0之间的kernel版本，因此搜寻3.18以后，且符合上面fail点的代码，首先就是[3.19版本](https://elixir.bootlin.com/linux/v3.19/source/drivers/mmc/core/core.c)对比代码如下，可见2287开始的几行和patch完全对应：
 
-![image-20230313191733743](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303131917802.png)
+![image-20230313191733743](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303131917802.png)
 
 打patch也全部通过未报错，所以3.19是此patch可适配的kernel版本：
 

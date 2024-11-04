@@ -14,11 +14,11 @@ VCC          红色
 
 串口的接口类型取决于开发板接口，飞腾Pi是使用USB转TTL接口，有的开发板是板载串口转USB芯片，外部是USB直连PC，还有的是RS232接口。不管接口类型如何，串口转接芯片一般是CH340/FT232。
 
-![image-20240424142615021](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404241426062.png)
+![image-20240424142615021](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404241426062.png)
 
 飞腾派接线只用了3根线，没用VCC。注意RX是接到TX， TX是接到RX。
 
-![image-20240424142831480](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404241428560.png)
+![image-20240424142831480](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404241428560.png)
 
 验证串口连接正常：查找到ttyUSB设备即USB转串口设备连接正常。
 

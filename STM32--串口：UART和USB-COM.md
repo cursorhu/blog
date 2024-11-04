@@ -6,21 +6,21 @@
 
 ## UART项目配置
 
-![image-20240430115304007](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404301153104.png)
+![image-20240430115304007](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404301153104.png)
 
 ## UART的轮询与中断
 
 ## USB的CDC类实现USB-COM
 
-![image-20240430141713692](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404301417744.png)
+![image-20240430141713692](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404301417744.png)
 
 
 
 ## 双串口的实现：UART和USB-COM
 
-![image-20240430141738799](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404301417818.png)
+![image-20240430141738799](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404301417818.png)
 
-![image-20240430141746453](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404301417518.png)
+![image-20240430141746453](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404301417518.png)
 
 参考：
 

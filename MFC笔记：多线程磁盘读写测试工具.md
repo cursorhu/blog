@@ -21,11 +21,11 @@ MFC（Microsoft Foundation Classes）是微软在win32 API上，用C++封装的G
 本文源码：[cursorhu/myMFCForAutoRWTest](https://github.com/cursorhu/myMFCForAutoRWTest.git)
 
 GUI界面：
-![1](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051510224.png)
+![1](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051510224.png)
 
 # 初识MFC项目
 VS新建MFC项目，例如“myMFC”，目录结构如下
-![2](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051514738.png)
+![2](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051514738.png)
 myMFC.cpp是VS自动创建的MFC项目入口，其主要功能是：创建一个窗口实例，注册会话对象（Dialog)
 界面的交互一定是分层的
 
@@ -192,9 +192,9 @@ VS自动创建myMFC项目的会话逻辑层，myMFCDlg.cpp
 
 myMFC.rc是UI的资源文件，打开就是UI界面
 ![3](C:\Users\thomas.hu\Desktop\3.png)
-![4](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051514703.png)
+![4](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051514703.png)
 可以看到界面的按钮，右键查看属性，可以修改标题和控件ID，会映射到Resource.h。双击按钮，myMFCDlg.cpp会自动创建方法`CmyMFCDlg::OnBnClickedButtondst()`，头文件自动加方法声明。
-![5](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051514147.png)
+![5](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051514147.png)
 
 前文的Dlg.cpp中的控件ID, dlg类的方法，变量，从一开始就可以从资源界面配置，自动生成：
 
@@ -203,18 +203,18 @@ myMFC.rc是UI的资源文件，打开就是UI界面
  - 右键添加值变量或控件变量
  - 双击添加方法
 
-![6](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051515208.png)
+![6](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051515208.png)
 关于值变量和控件变量：
 值变量用于关联界面和类成员，值变量就是类成员名，例如点击dst按钮调用其方法后，获得的路径，会写入m_dst值变量
-![7](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051512803.png)
+![7](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051512803.png)
 控件变量代表控件本身，用于底层逻辑中，直接调用控件的方法，例如控件变量叫dst_ctrl，可以在某个方法中`ctrl_dst.SetWindowText(_T(""))`清空界面的字符串
-![8](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051512701.png)
+![8](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051512701.png)
 
 # 简单拷贝校验的实现
 实现从src目录拷贝所有文件到dst目录，并比较拷贝前后的文件是否一致
 ## 获取文件路径
 两个路径选择按钮和对应的编辑框显示路径，一个Start按钮
-![9](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051513686.png)
+![9](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051513686.png)
 
 button src的方法：
 
@@ -273,9 +273,9 @@ SHBrowseForFolder是win32 API，专用于打开目录
     }
 
 不管哪一种，效果如下
-![10](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051515196.png)
+![10](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051515196.png)
 选择完后，路径会在编辑框显示，这就是控件语句`ctrl_src.SetWindowText(SrcPath)`的效果
-![11](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051515342.png)
+![11](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051515342.png)
 
 ## 拷贝和比较
 拷贝函数如下，只需关注几个函数：
@@ -570,11 +570,11 @@ start按钮的方法调用已保存的m_src和m_dst路径，传入拷贝和比�
 ## 线程列表获取各自路径
 add和delete配置几个工作线程，每个线程配置其src和dst路径
 
-![12](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051516636.png)
+![12](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051516636.png)
 
-![13](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051516611.png)
+![13](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051516611.png)
 
-![14](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051516530.png)
+![14](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051516530.png)
 
 这种动态增删的列表，在资源界面新建listbox类型变量和方法：
 
@@ -878,7 +878,7 @@ Windows消息机制可以解决工作线程和主线程通信问题，简单的�
  - 设置输出滚动显示
 
 效果如下：
-![15](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051516097.png)
+![15](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051516097.png)
 
 （3）线程同步
 日志完成的输出是主线程等待所有工作线程函数返回后才执行，如何实现？
@@ -944,7 +944,7 @@ Windows消息机制可以解决工作线程和主线程通信问题，简单的�
 
 MsgWaitForMultipleObjects的MS说明文档：[MsgWaitForMultipleObjects function (winuser.h)](https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-msgwaitformultipleobjects)
 返回值的含义是重点，这个文档说的很隐晦：
-![16](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051517122.png)
+![16](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051517122.png)
 
 大意是：等待n个线程
 

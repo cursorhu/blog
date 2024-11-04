@@ -14,7 +14,7 @@ Github: [cursorhu/myTinyHttpd](https://github.com/cursorhu/myTinyHttpd)
 # 2.背景知识
 ## TCP套接字的通信流程
 网络协议栈的核心是TCP/IP协议，HTTP本质上是对TCP的应用层封装，要理解HTTP服务程序，首先要理解TCP层的通信机制，在Linux环境中TCP采用socket接口通信，流程如下图
-![image-20221212145149039](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121451104.png)
+![image-20221212145149039](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121451104.png)
 关于Linux网络编程相关知识，参考《Linux网络编程-第二版》
 TinyHttpd实现服务端的流程。
 
@@ -42,14 +42,14 @@ Aliyun CentOS环境，运行如下deploy.sh：
     yum install -y perl perl-CGI
     make clean && make
 
-![image-20221212145206784](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121452836.png)
+![image-20221212145206784](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121452836.png)
 
 ## 浏览器访问httpd
 服务端直接运行httpd，会分配随机可用端口，本地chrome浏览器访问该服务所在的ip:端口
-![image-20221212145218796](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121452831.png)
+![image-20221212145218796](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121452831.png)
 
 这里ip即为httpd所在主机ip，默认访问资源是htdocs/index.html，原因可见httpd.c的http Get请求解析url的处理
-![image-20221212145227807](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121452854.png)
+![image-20221212145227807](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121452854.png)
 
 index.h调用color.cgi脚本：
 
@@ -88,7 +88,7 @@ color.cgi内容：
  - 显示字符串：This is $color
 
 输入“red”, 浏览器显示效果：
-![image-20221212145241997](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121452042.png)
+![image-20221212145241997](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121452042.png)
 
 F12打开浏览器调试窗口，可见：
 
@@ -96,9 +96,9 @@ F12打开浏览器调试窗口，可见：
  - 查看http head内容，浏览器客户端的请求是POST，类型是text文本，表单数据(Form data):color的值是red
  - 查看http response内容，即httpd返回的内容。返回了html文本，即浏览器可见的红色页面
 
-![image-20221212145258548](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121452614.png)
+![image-20221212145258548](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121452614.png)
 
-![image-20221212145533364](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121455408.png)
+![image-20221212145533364](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121455408.png)
 
 现在理解以下整个流程：
 
@@ -110,13 +110,13 @@ F12打开浏览器调试窗口，可见：
 
 再看另外一个获取时间的功能：
 浏览器输入`ip:port/date.html`
-![image-20221212145316645](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121453695.png)
+![image-20221212145316645](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121453695.png)
 访问的资源是date.cgi，返回了显示当前时间的页面
-![image-20221212145338163](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121453222.png)
+![image-20221212145338163](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121453222.png)
 看下http请求和响应
-![image-20221212145345780](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121453850.png)
+![image-20221212145345780](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121453850.png)
 
-![image-20221212145353230](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121453273.png)
+![image-20221212145353230](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121453273.png)
 
 date.cgi的实现：shell直接调用linux `date`命令
 
@@ -132,12 +132,12 @@ date.cgi的实现：shell直接调用linux `date`命令
 
 ## TCP socket访问httpd(测试)
 client.c直接使用socket接口访问httpd，这是个测试功能，因此用编译参数控制了该功能, `make test_sock=y`编译该版本的httpd
-![image-20221212145401934](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121454984.png)
+![image-20221212145401934](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121454984.png)
 client和httpd在同一主机，直接访问回环地址127.0.0.1，可见httpd返回了client发送的字符'A'
 
 # 4.源码分析
 ## (1) httpd的处理http请求的主要流程
-![image-20221212145417431](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121454501.png)
+![image-20221212145417431](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121454501.png)
 
  1. 服务器启动，在指定端口或随机选取端口绑定 httpd 服务
  2. 收到一个 HTTP 请求时（其实就是 listen 的端口 accpet 的时候），派生一个线程运行 accept_request 函数
@@ -151,9 +151,9 @@ client和httpd在同一主机，直接访问回环地址127.0.0.1，可见httpd�
  10. 关闭与浏览器的连接，完成了一次 HTTP 请求与回应， HTTP是无连接的。
 
 管道初始状态：
-![image-20221212145427091](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121454140.png)
+![image-20221212145427091](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121454140.png)
 管道最终状态：
-![image-20221212145432542](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121454591.png)
+![image-20221212145432542](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121454591.png)
 
 主要函数：
 

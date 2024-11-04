@@ -267,9 +267,9 @@ sed p和grep都能提取内容，其区别在于：
  - `sed '/string/p'`是提取指定文件的行内容，重点在内容提取
  - `grep "string" path`是输出包含指定内容的所有文件路径，重点在查找文件位置
 
-![image-20221205145238133](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051452182.png)
+![image-20221205145238133](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051452182.png)
 
-![image-20221205145248149](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051452191.png)
+![image-20221205145248149](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051452191.png)
 
 
 ## sed进阶与实战
@@ -277,12 +277,12 @@ sed p和grep都能提取内容，其区别在于：
 背景介绍：
 底层固件代码有一些功能由宏定义控制，不同功能需要不同的宏定义组合，因此有不同的宏定义文件，命名为.def后缀。批量编译不同版本，编译脚本依次提取def文件夹内的.def文件和源代码一起编译。单个def内容如下：
 
-![image-20221205145321718](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051453765.png)
+![image-20221205145321718](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051453765.png)
 
 每一个宏都有多个取值，因此组合起来，需要生成一堆.def文件，批量编译才能覆盖各自功能。
 每新增一个宏，都要修改所有.def文件，如果这个宏有两个取值，.def文件数量将翻倍。
 
-![image-20221205145327892](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051453942.png)
+![image-20221205145327892](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051453942.png)
 
 人工修改过于低效，使用sed可解决此问题。
 
@@ -329,10 +329,10 @@ sed p和grep都能提取内容，其区别在于：
 底层固件需要将代码段、数据段等关键信息存储在固件头部，编译过程中用编译器的size命令可以获取这些信息，并存储到文本，但是固件头部需要按自己的格式存储起始地址和大小信息，因此需要用sed提取并编辑该文本。
 
 原文本：
-![image-20221205145348933](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051453983.png)
+![image-20221205145348933](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051453983.png)
 
 提取后文本：
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051453414.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051453414.png)
 
 sed命令：
 
@@ -345,4 +345,4 @@ sed命令：
  - \$(shell xxxx): Makefile执行shell命令
  - \$$: Makefile不能直接用shell的“$”解析变量，用“$$”
 
-![image-20221205145409877](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051454928.png)
+![image-20221205145409877](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051454928.png)

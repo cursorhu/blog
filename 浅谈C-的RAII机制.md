@@ -16,7 +16,7 @@ categories: C++
  - 动态分配：静态数据和堆栈之前的空间（称为堆），可由应用程序动态分配，同时，也必须由应用程序释放。所谓的内存的动态分配与释放，通常讨论的是这种情况
 
 以32位Linux环境的应用程序为例，每个进程可见的（虚拟）内存分布如下，C/C++常用的malloc/free, new/delete对应的内存分配释放都在.heap段内
-![image-20221208165846274](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081658341.png)
+![image-20221208165846274](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081658341.png)
 
 # 2.动态内存管理的缺陷
 我们在使用资源时必须严格遵循的步骤是：

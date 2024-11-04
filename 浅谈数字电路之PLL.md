@@ -7,7 +7,7 @@ categories: IC
 
 本文PLL的基础内容参考了Digital Integrated Circuits一书，下载方式：在 [vdoc](https://vdoc.pub/) 搜索关键字 Digital Integrated Circuits
 
-![img](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303011144938.jpeg)
+![img](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303011144938.jpeg)
 
 ## PLL的应用概述
 
@@ -16,7 +16,7 @@ categories: IC
 - Clock Synthesis，Synthesis是综合/生成的意思，Clock Synthesis即生成时钟，但此处含义不是作为时钟源，而是在低频晶振时钟的基础上倍频生成高频时钟：其中低频的晶振时钟的特性：10~200MHz， accurate, low-jitter ，高频时钟特性：200MHz ~ GHz级别，通常也称为系统时钟，例如SOC core的基准频率
 - Clock Synchronization，不同芯片之间传递时钟信号需要同步时钟相位，例如SOC的CPU和外设之间的通信接口一般是：分频后的时钟信号（reference clock）和数据信号（Date），CPU和外设间的信号传递是需要时间的，高速信号传递到外设侧有相位偏移（可以简单理解为延迟），因此需要PLL同步时钟相位以保证对数据采样的正确性（想象一下，如果reference clock相位偏移过大，可能每个采样时刻得到的data数据都是错位的）
 
-![image-20230303104354744](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303031043844.png)
+![image-20230303104354744](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303031043844.png)
 
 ## 相位的概念
 
@@ -32,7 +32,7 @@ well defined if we know one of them and its phase with respect to the other sign
 
 - 如果这些信号的频率相同，则只需知道相位差就可以从一个信号精确推测另一个信号
 
-![image-20230303163446269](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303031634330.png)
+![image-20230303163446269](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303031634330.png)
 
 基于以上概念，下面介绍PLL的两个核心功能：
 
@@ -46,7 +46,7 @@ PLL内部结构如下，真正核心的只有两个组件：
 - VCO: The voltage-controlled oscillator (VCO) takes an analog control input and generates a clock signal of the desired frequency.  VCO接受电压（模拟信号），转换为频率（数字信号），也就是说，VCO使输出频率是电压的函数(非线性)。Charge pump是控制电压增加和减少的模块，Loop filter是低通滤波器，过滤掉电压信号中的高频正弦噪声，使VCO的输入更“纯粹”（减少毛刺信号，jittery clock）
 - Phase Detectors: 为什么带s ? 因为可以有两种实现：XOR Phase Detector  和 Phase-Frequency Detector ，Phase Detectors是相位和频率同步的核心，具体原理下面讲
 
-![image-20230303163504732](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303031635776.png)
+![image-20230303163504732](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303031635776.png)
 
 
 
@@ -56,7 +56,7 @@ PLL内部结构如下，真正核心的只有两个组件：
 
 当ref clock和local clock(反馈时钟)有相位差，异或之后输出的就是相位差信号(phase error)，这个信号经过线性函数转换成Vdd, 作为VCO的控制电压。
 
-![image-20230303143346757](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303031433820.png)
+![image-20230303143346757](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303031433820.png)
 
 XOR的缺陷：当local clock相位和ref clock相位一致，但local clock频率是ref clock的N倍时，XOR检不输出相位差，但此时PLL输出频率不是预期的频率，而是N倍的预期频率。
 
@@ -68,7 +68,7 @@ XOR的缺陷：当local clock相位和ref clock相位一致，但local clock频�
 
 PFD使用触发器(flip-flops)，将UP/DN变成A和B的状态机；关于flip-flops的特性，参考 [Overview The D latch - University of Washington](https://courses.cs.washington.edu/courses/cse370/03sp/pdfs/lectures/lecture15.pdf)
 
-![image-20230303153203366](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303031532421.png)
+![image-20230303153203366](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303031532421.png)
 
 (1) PFD如何检测相位差
 
@@ -82,13 +82,13 @@ PFD使用触发器(flip-flops)，将UP/DN变成A和B的状态机；关于flip-fl
 
 
 
-![image-20230303150043973](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303031500042.png)
+![image-20230303150043973](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303031500042.png)
 
 (2) PFD如何检测频率差
 
 如下图，当B频率比A低，PFD输出更多的UP信号增加VCO电压，提高B的频率；当B频率比A高则相反，PFD输出更多DN信号降低B的频率
 
-![image-20230303151725271](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303031517323.png)
+![image-20230303151725271](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303031517323.png)
 
 ## PLL的指标
 
@@ -114,7 +114,7 @@ Important properties of a PLL are：
 
 可见PLL稳定过程是将ref，vco和div时钟信号的相位、频率都收敛到一致
 
-![image-20230303142344571](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303031423652.png)
+![image-20230303142344571](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303031423652.png)
 
 
 
@@ -134,7 +134,7 @@ blocks as well as fully programmable dividers are integrated in the core. It is 
 for clock multiplication of stable crystal oscillator sources and for de-skew clock
 signals  
 
-![image-20230306165657371](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303061656462.png)
+![image-20230306165657371](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303061656462.png)
 
 可见主要模块还是PFD + VCO，输出时钟加了一些逻辑门控制，例如PDRST是PLL时钟复位控制。
 
@@ -152,13 +152,13 @@ Output clock frequency range from 62.5MHz to 1500MHz
 
 PLL作为实际可用的模块，其输出频率一定是可调的，以下PLL IP的pin中的M, N即调整频率；对于固件、驱动软件开发者，M，N分频的访问接口是作为寄存器来动态配置。
 
-![image-20230306170709189](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303061707268.png)
+![image-20230306170709189](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303061707268.png)
 
 在M，N调整分配时，必须reset PLL并等待PLL再次稳定（PLL lock time），如下图：
 
 LKDT: Lock Detection, 表示目前PLL正在lock，即反映PLL是否处于不稳定状态
 
-![image-20230306171156449](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303061711496.png)
+![image-20230306171156449](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303061711496.png)
 
 ## PLL在外设时钟配置的实例
 
@@ -172,7 +172,7 @@ SD控制器(SD host)是SOC中常用的外围模块，通过SD specification规�
 - PLL: host的倍频器，为了给SD UHS-II card提供更高速的工作时钟(UHS-I低速SD card不需要此PLL)
 - RCLK: SD card的工作时钟(reference clock)
 
-![image-20230306195458581](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303061954691.png)
+![image-20230306195458581](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303061954691.png)
 
 (2) SD host和card的时钟初始化
 
@@ -182,11 +182,11 @@ SD host和card的时钟初始化包含三步：
 
 2.enable PLL，并等待其稳定，这个等待稳定超时时间为150ms ，如下图(5)~(6)。
 
-![image-20230306172758282](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303062016985.png)
+![image-20230306172758282](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303062016985.png)
 
 3.待host PLL输出稳定后，即可enable SD clock开始对SD卡供应reference clock时钟, 注意SD clock是下图(1)~(2)就已经计算好的，如下表Base Clock为internal clock，M可理解为PLL倍频后的频率, 经过2^N分频后给SD card作为reference clock。
 
-![image-20230306201345998](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303062013044.png)
+![image-20230306201345998](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303062013044.png)
 
 ## PLL在电源管理的实例
 
@@ -203,7 +203,7 @@ PCIe的电源管理基本概念参考 [PCI EXPRESS ARCHITECTURE POWER MANAGEMENT
 
 从上到下包含三层：系统电源状态(S)，PCIe链路电源状态(L)，PCIe设备电源状态(D)
 
-![Untitled Diagram](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303071046331.png)
+![Untitled Diagram](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303071046331.png)
 
 - Sleep state
 
@@ -238,9 +238,9 @@ D3 (Off): Primary power may be fully removed from the device (D3cold), or not re
 
 S, L, D 三层状态的对应关系如下表
 
-![image-20230307105034704](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303071050761.png)
+![image-20230307105034704](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303071050761.png)
 
-![image-20230307105052312](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303071050372.png)
+![image-20230307105052312](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303071050372.png)
 
 注意，Link state是Sleep state对Device state作用的结果，即状态变化的过程是：
 
@@ -258,7 +258,7 @@ Device sate退出D3并进入D0则是相反过程，设备的PLL模块打开，�
 
 当PCIe link改变时，本质是PCIe时钟改变；PCIe host侧（bridge/Root Complex）的时钟也是低速clock source经PLL倍频后的2.5GHz，如下图：
 
-![image-20230307120222026](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303071202081.png)
+![image-20230307120222026](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303071202081.png)
 
 L1 link state的本质：The L1 Link state is an idle state with the internal Phase Lock Loop Circuit turned off. The source clock is still feeding a 100-megahertz differential clock signal to the PCI Express component.
 

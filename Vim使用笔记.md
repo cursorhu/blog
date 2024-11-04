@@ -24,16 +24,16 @@ ChromeOS不方便截图，所以本文以ubuntu上的linux0.11代码为例，整
 怎么知道当前处于哪种模式？
 vim左下角是状态行，以下是三种模式的状态示例：
 - `vim init/main.c`默认进入文本编辑模式，下面显示文件名和行号
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202205171047554.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202205171047554.png)
 
 输入i, 进入文本插入模式，下面显示insert状态
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202205171052433.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202205171052433.png)
 
 按esc退出文本编辑，再输入`:` 进入命令行模式，例如输入`:wq`保存文件
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202205171053124.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202205171053124.png)
 
 还有一种visual模式是复制粘贴时会用到：
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202205181032041.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202205181032041.png)
 
 
 下面讲文本编辑模式和命令行模式的常用命令
@@ -91,10 +91,10 @@ vim左下角是状态行，以下是三种模式的状态示例：
 | :cn (cnext) 和 :cp (cprev)  | 上下选择搜索文件列表       |
 
 示例：搜索linux0.11下的所有包含main的.c文件
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202205171959744.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202205171959744.png)
 
 quickfix list即文件列表，copen后可方向键选择打开文件
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202205172002631.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202205172002631.png)
 
 - 多文件编辑
   **打开多个文件，分隔并列显示**
@@ -106,7 +106,7 @@ quickfix list即文件列表，copen后可方向键选择打开文件
     先按ctrl+w选择窗口模式，再按<>+-调整。< 左移，> 右移，+ 上移， - 下移。
 
 示例：实现类似IDE的界面，左侧是文件列表，下侧是查找栏，右侧文件内容
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202205181006035.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202205181006035.png)
 
   **打开多个文件，不并列显示**
 直接`:open file`打开新文件, 用 `:bn 和 :bN` (buffer next)切换文件, 
@@ -130,7 +130,7 @@ vim的多个文件直接可以直接用 y + p 命令复制粘贴，因为共用v
 - 查找函数的定义和调用
 如果光标已经在函数上，用 "`ctrl +＼`" 再输入s，查找所有调用、定义该函数的列表，输入索引号回车
 更推荐用cscope的命令行，`:cs f s 函数名` 是一样的结果，且光标不需要位于函数上。参数含义 f: find, s: symbol
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202205181103274.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202205181103274.png)
 - 跳转回之前的位置
   "`ctrl + t`
 
@@ -141,9 +141,9 @@ vim的多个文件直接可以直接用 y + p 命令复制粘贴，因为共用v
 效果对比:
 
 默认配色看不清注释内容
-![image-20221206143528332](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061435384.png)
+![image-20221206143528332](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061435384.png)
 Molokai配色
-![image-20221206143701354](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061437401.png)
+![image-20221206143701354](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061437401.png)
 
 配置过程：
 

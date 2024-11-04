@@ -46,10 +46,10 @@ nodejs服务可以用`nohup node xxx.js &`后台启动，但是实际使用发�
 
 后台启动main.js并监测状态：
 
-![image-20221206142729375](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061427417.png)
+![image-20221206142729375](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061427417.png)
 
-![image-20221206142743066](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061427110.png)
+![image-20221206142743066](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061427110.png)
 
-![image-20221206142752627](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061427682.png)
+![image-20221206142752627](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061427682.png)
 
-![image-20221206142800236](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212061428280.png)
+![image-20221206142800236](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212061428280.png)

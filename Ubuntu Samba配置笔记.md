@@ -58,7 +58,7 @@ sudo systemctl restart smbd
 
 windows下可以在文件浏览器直接访问Linux主机ip查看共享的Linux目录
 
-![image-20230130110305978](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202301301103020.png)
+![image-20230130110305978](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202301301103020.png)
 
 首次windows访问共享目录有权限问题（不能写入），需要在Linux修改共享目录/home的权限：
 

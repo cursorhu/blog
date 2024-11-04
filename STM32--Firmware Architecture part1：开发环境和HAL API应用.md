@@ -38,7 +38,7 @@ helps->docs & resource, 下载F0系列的：
 
 Data Sheet(DS), Reference Manual(RM), Programming Manual(PM). 
 
-![image-20240510174102795](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405101741846.png)
+![image-20240510174102795](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405101741846.png)
 
 此外还有F1系列才有的**User Manual UM1850**，里面详细介绍各外设Driver的设计标准和API如何使用，对F0的Firmware也是通用，去ST官网下载。
 
@@ -46,7 +46,7 @@ Data Sheet(DS), Reference Manual(RM), Programming Manual(PM).
 
 CubeMX/CubeMXIDE首次运行STM32工程会要求安装STM32FXX的固件包，路径：CubeMX工程管理页面 -> Firmware Package Path
 
-![image-20240510170810653](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405101708801.png)
+![image-20240510170810653](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405101708801.png)
 
 原厂固件包的作用：
 
@@ -70,7 +70,7 @@ STM32Cube\Repository\STM32Cube_FW_F0_V1.11.4\Drivers\STM32F0xx_HAL_Driver\STM32F
 
 STM32固件的架构，这也是STM32 Firmware项目的基本架构：
 
-![image-20240513150236222](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131502283.png)
+![image-20240513150236222](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131502283.png)
 
 1. HAL和LL APIs是ST提供的STM32 chipset API，目的是hide theMCU and peripheral complexity to end user
 
@@ -106,41 +106,41 @@ SysTick interrupts 只能在HAL使用，LL API无法调用SysTick interrupts，�
 
 指定ARM编译器，指定代码目标是RAM\Flash位置的基地址
 
-![image-20240510203738554](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405102037591.png)
+![image-20240510203738554](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405102037591.png)
 
 指定输出文件
 
-![image-20240510203910212](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405102039243.png)
+![image-20240510203910212](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405102039243.png)
 
 链接输出的符号总览文件.map
 
-![image-20240510203928847](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405102039879.png)
+![image-20240510203928847](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405102039879.png)
 
 编译的后处理过程，从hex生产bin
 
-![image-20240510204028853](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405102040886.png)
+![image-20240510204028853](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405102040886.png)
 
 指定代码优化级别，警告级别，语言标准；指定头文件，组合成编译参数
 
-![image-20240510204213867](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405102042899.png)
+![image-20240510204213867](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405102042899.png)
 
 指定汇编器，一些伪汇编符号语法(syntax)和汇编器类型相关，例如Arm syntax和GUN syntax有很大差异
 
-![image-20240510204344181](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405102043211.png)
+![image-20240510204344181](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405102043211.png)
 
 指定链接文件(scatter file), 功能对应Makefile的.ld链接脚本文件，用于指定各段分布。
 
-![image-20240510204720264](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405102047297.png)
+![image-20240510204720264](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405102047297.png)
 
 Debug和JLink烧录的配置，这里勾选JLink烧录后自动reset启动新程序:
 
 这里实际是Keil调用JFlash烧写，需要指定Flash地址和大小，一般和Keil项目配置的ROM区间一致
 
-![image-20240517095249013](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405170952108.png)
+![image-20240517095249013](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405170952108.png)
 
 项目的目录配置中指定哪些.c参与编译:
 
-![image-20240510205959362](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405102059394.png)
+![image-20240510205959362](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405102059394.png)
 
 ### Keil链接配置
 
@@ -198,7 +198,7 @@ STM32的代码段分布如下表, 其中CODE（包括RO/RW CODE和TEXT），DATA
 
 将已有的CubeMX+MDK工程输出为Makefile工程，产生Makefile和STM32F072C8Tx_FLASH.ld文件.
 
-![image-20240510205610521](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405102056555.png)
+![image-20240510205610521](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405102056555.png)
 
 Makefile分析：
 
@@ -495,7 +495,7 @@ SECTIONS
 
 ## 编译输出: elf,hex,bin,axf的区别
 
-![image-20240513114246442](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131142491.png)
+![image-20240513114246442](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131142491.png)
 
 ## 链接输出的.map符号表
 
@@ -670,15 +670,15 @@ STM32能从Flash/SRAM或System memory(远程)启动。启动位置直接决定�
 
 1. 查固件包Reference Manual：对于F0系列，由BOOT0 pin和nBOOT1 register bit决定启动位置。
 
-![image-20240513160303987](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131603031.png)
+![image-20240513160303987](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131603031.png)
 
 2. 查开发板BOOT0 pin：下拉接地，因此开发板是Boot from Flash。
 
-![image-20240513160533426](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131605456.png)
+![image-20240513160533426](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131605456.png)
 
 3. 顺便查一下nBOOT1 register：
 
-![image-20240513160652648](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131606693.png)
+![image-20240513160652648](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131606693.png)
 
 ## startup.s
 
@@ -760,7 +760,7 @@ __Vectors_End
 
 STM32 中断向量表的定义参考固件包Program Manual：
 
-![image-20240513154213024](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131542062.png)
+![image-20240513154213024](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131542062.png)
 
 MCU启动或者reset时：
 
@@ -799,9 +799,9 @@ https://documentation-service.arm.com/static/63eb50c09567172d4e2aa777
 
 1. Cortex M0指令集：
 
-![image-20240513155719763](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131557835.png)
+![image-20240513155719763](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131557835.png)
 
-![image-20240513155736664](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131557727.png)
+![image-20240513155736664](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131557727.png)
 
 2. armasm的一些伪汇编指令：
 
@@ -854,13 +854,13 @@ https://documentation-service.arm.com/static/63eb50c09567172d4e2aa777
 
 3. STM32 所有的中断和异常的优先级总表，参考Reference Manual：
 
-![image-20240513163316319](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131633379.png)
+![image-20240513163316319](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131633379.png)
 
 ## SystemClock_Config
 
 1. 整个时钟树配置参数可以在CubeMX初始化项目时配置，系统时钟SYSCLK有外部HSE（8M OSC）和内部HSI（内部RC）多个源，由下图当前配置生效的是HSI 48M RC作为源。
 
-![image-20240513164731624](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131647697.png)
+![image-20240513164731624](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131647697.png)
 
 不同外设模式对时钟树的要求：
 
@@ -989,7 +989,7 @@ typedef enum
 
 RCC->CR的定义为例：bit17为HSE RDY bit.
 
-![image-20240513170841325](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131708364.png)
+![image-20240513170841325](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131708364.png)
 
 ## MX_GPIO_Init
 
@@ -1006,17 +1006,17 @@ GPIO重点描述几个话题：
 
    GPIO有A~F多组，各组的pin独立；
 
-   ![image-20240513173750127](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131737151.png)
+   ![image-20240513173750127](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131737151.png)
 
    每组GPIO pin都有复用不同的功能；
 
-   ![image-20240513173701913](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131737965.png)
+   ![image-20240513173701913](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131737965.png)
 
 2. GPIO的模式
 
    参考Datasheet：Each of the GPIO pins can be configured by software as output (push-pull or open-drain), as input (with or without pull-up or pull-down) or as peripheral alternate function.   
 
-   ![image-20240513174736319](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405131747355.png)
+   ![image-20240513174736319](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405131747355.png)
 
    输出模式的开漏和推挽模式的主要特性：
 
@@ -1242,7 +1242,7 @@ DMA传输错误中断的判断和回调函数：
 
 参考（RM0091）：
 
-![image-20240513202302455](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405132023514.png)
+![image-20240513202302455](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405132023514.png)
 
 ## MX_I2C1_Init
 
@@ -1255,9 +1255,9 @@ DMA传输错误中断的判断和回调函数：
 
 根据以下，本环境是硬件I2C功能。
 
-![image-20240517153927141](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171539178.png)![image-20240517154143995](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171541038.png)
+![image-20240517153927141](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171539178.png)![image-20240517154143995](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171541038.png)
 
-![image-20240517154158646](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171541688.png)
+![image-20240517154158646](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171541688.png)
 
 下面看初始化代码。
 
@@ -1271,7 +1271,7 @@ I2C初始化包括两步：
 
 其他能力见RM0091:
 
-![image-20240513203608542](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405132036579.png)
+![image-20240513203608542](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405132036579.png)
 
 代码配置的速度和寻址：
 
@@ -1321,7 +1321,7 @@ HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
    参考[SPI的四种传输模式及工作机制分析](https://zhuanlan.zhihu.com/p/689464409)
 
-   ![image-20240513205538749](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405132055783.png)
+   ![image-20240513205538749](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405132055783.png)
 
    黑线为数据采样点，与之相反为数据发送点
 
@@ -1389,7 +1389,7 @@ HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
    A Break character is interpreted on receiving “0”s for a frame period. At the end of the break frame, the transmitter inserts 2 stop bits.
 
-   ![image-20240513210648197](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405132106226.png)
+   ![image-20240513210648197](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405132106226.png)
 
    默认上拉, 如果MCU没有drive UART RX/TX pin为低，则可以识别为idle frame；
 
@@ -1401,7 +1401,7 @@ o2link的UART 2 PA2 PA3 is used as USB TO UART port.
 
 什么是USB to UART：涉及USB CDC虚拟串口的概念，参考： [Communications Devices Class (CDC)](https://wiki.st.com/stm32mcu/wiki/Introduction_to_USB_with_STM32#Communications_Devices_Class_-CDC-_2)，即USB实现的虚拟串口协议；
 
-![image-20240513212722508](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405132127552.png)
+![image-20240513212722508](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405132127552.png)
 
 MCU侧配置UART2参数是来自于USBD_CDC_LineCoding.
 
@@ -1409,7 +1409,7 @@ MCU侧配置UART2参数是来自于USBD_CDC_LineCoding.
 
 UART TX has no buffer, it will send data directly to the TX pin when it receives data from USB HID, the max data is 64 bytes one time. UART RX has 1K bytes buffer, it uses idle frame to receive data, when it sees this idle frame, it will generate interrupt to tell the app code, and the app code will split data into 64 bytes and transmit the data to the USB.  
 
-![image-20240513212534924](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405132125954.png)
+![image-20240513212534924](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405132125954.png)
 
 ### UART2初始化过程
 
@@ -1581,7 +1581,7 @@ switch (USBD_CDC_LineCoding.paritytype)
 
    理解以上代码，就可以理解USB to UART2的RX机制，是将下位机的大量UART data(最多1024 bytes)，分多次DMA存到UART2_RxBuffer，再按64bytes/USB buffer发给上位机。
 
-   ![image-20240514162541398](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405141625450.png)
+   ![image-20240514162541398](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405141625450.png)
    
    
 
@@ -1698,7 +1698,7 @@ HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData , CDC_CMD_EP , PCD_SNG_BUF, 
 
 USB设备对象PCD_HandleTypeDef的定义：
 
-![image-20240514114808440](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405141148488.png)
+![image-20240514114808440](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405141148488.png)
 
 初始化完成后是USBD_RegisterClass和USBD_Start，结构类似不细讲。
 
@@ -1724,13 +1724,13 @@ b. hardware timer精度可以达到us, ns，属于即用即停，单次运行的
 
 2. STM32的hardware timer有几类：
 
-![image-20240514120637192](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405141206215.png)
+![image-20240514120637192](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405141206215.png)
 
 o2link只用到base timer 6. 以下讨论都是针对base timer 6
 
 1. timer的计时原理图
 
-![image-20240514140729465](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405141407505.png)
+![image-20240514140729465](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405141407505.png)
 
 2. timer的计时精度和最大时间
 
@@ -1743,7 +1743,7 @@ o2link只用到base timer 6. 以下讨论都是针对base timer 6
 
  timer模块的时钟是48MHZ, 所以48分频为1us计时.
 
-![image-20240514140933458](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405141409488.png)
+![image-20240514140933458](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405141409488.png)
 
 ```
   htim6.Init.Prescaler = Prescaler - 1; //分频后的时钟，决定每个counter计数的时间间隔
@@ -2219,7 +2219,7 @@ void jaguar_uart_pin_low_fun(uint32_t ustimer)
 
 o2link spec定义的USB to SPI数据包格式：
 
-![image-20240514170141237](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405141701291.png)
+![image-20240514170141237](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405141701291.png)
 
 SPI数据通信的原理：
 
@@ -2227,9 +2227,9 @@ SPI一般设置为全双工双向通信，利用移位register交换master/slave
 
 全双工时，SPI不存在单向的发送或单向的接收，数据一定是“交换”的。firmware的关注点是用RX register发数据，还是从Tx register拿数据。
 
-![image-20240514171557572](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405141715633.png)
+![image-20240514171557572](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405141715633.png)
 
-![image-20240514170528006](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405141705044.png)
+![image-20240514170528006](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405141705044.png)
 
 代码分析：
 

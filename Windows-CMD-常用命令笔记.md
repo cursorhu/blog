@@ -17,16 +17,16 @@ categories: windows
 
 `TREE 【drive：】【path】`
 
-![image-20230130104934713](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202301301049746.png)
+![image-20230130104934713](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202301301049746.png)
 
 示例二：显示路径名和文件名
 
 `TREE 【drive：】【path】【/F】`
 
-![image-20230130104835813](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202301301048851.png)
+![image-20230130104835813](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202301301048851.png)
 
 示例三：将目录树存入指定文件
 
 `TREE 【drive：】【path】 > 文件路径】`
 
-![image-20230130105102054](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202301301051100.png)
+![image-20230130105102054](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202301301051100.png)

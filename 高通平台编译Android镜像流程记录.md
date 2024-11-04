@@ -17,7 +17,7 @@ categories: Android
 
 使用shadowssocks+privoxy搭建客户端代理，如下图客户端进程发送请求（http/https/git）到privoxy，privoxy将请求转化为socks5请求，发送给shadowsocks客户端，shadowsocks处理socks5请求,将其发送到远端VPS上运行的socks5服务端（shadowsocks server），VPS再将请求转发给目标服务器。
 
-![image001](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281739480.png)
+![image001](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281739480.png)
 
 ### 1.3 shadowsocks+privoxy代理搭建
 
@@ -133,7 +133,7 @@ git config --global core.gitproxy `echo $HOME`/bin/socks5proxywrapper
 \- 1 本地编译：在当前编译平台下，编译出来的程序只能运行在当前平台。常见的应用软件开发的编译都属于本地编译。 
 \- 2 交叉编译：在当前编译平台下，编译出来的程序能运行在另一种体系结构不同的目标平台上，但是编译平台本身却不能运行该程序。 
 \- 3 交叉编译工具链：编译过程包括了预处理、编译、汇编、链接等过程。每个子过程都是单独的工具来实现。交叉编译链是为了编译跨平台体系结构的程序代码而形成的由多个子工具构成的一套完整的工具集。 
-![image003](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281739906.png)
+![image003](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281739906.png)
 如上图，交叉编译工具链中最主要的部分包含编译器（如gcc）,汇编器（如as）,连接器（如ld）。通常as和ld及objcopy等其他工具由GNU打包成了binutils（binary utilitys)工具，再加上编译器组成整个工具链。
 其中编译器命名规则为：
 
@@ -149,7 +149,7 @@ compiler: 编译器名，如gcc, g++,clang,clang++
 
 \- 4 交叉编译架构： 
 HOST OS 通常为Linux，包含自身的kernel、glibc基础库和Target程序的依赖库。Toolchain包含C/C++及其他语言编译器和汇编、链接器等组件。Toolchain依赖于HOST的glibc基础库。Target binary是编译出的目标镜像/程序，编译过程依赖于Toolchain及HOST的build essential libs。 
-![image005](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281740465.png)
+![image005](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281740465.png)
 
 ### 2.2 高通Android平台编译概念 
 
@@ -160,10 +160,10 @@ HOST OS 通常为Linux，包含自身的kernel、glibc基础库和Target程序�
 | Ubuntu14.04 LTS | Clang/LLVM | CAF                    | support Android 9 Pie     |
 
 高通平台HDK845推荐的编译流程如下： 
-![image006](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281740419.png)
+![image006](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281740419.png)
 
 Clang/LLVM编译器介绍   
-![clangLLVM](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281748816.png)
+![clangLLVM](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281748816.png)
 CAF和AOSP的介绍  
 
 ```
@@ -357,7 +357,7 @@ type-C: 用于开发板接收adb/fastboot
 micro USB： 用于HOST接收开发板的输出打印 
 连接如下：
 
-![image007](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281740889.png)
+![image007](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281740889.png)
 
 HOST端用到的工具：
 fastboot: 用于烧写Android镜像到开发板 
@@ -375,13 +375,13 @@ echo %PATH%
 ```
 \- 2 查看开发板对应的com口，secureCRT新建会话，设置serial，设置com口和波特率115200
 
-![image009](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281740486.png)
+![image009](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281740486.png)
 
 ### 3.2 烧写镜像
 
 \- 1 首先使开发版进入fastboot模式，连接micro USB，电源选项拨到DC电源, 上电后长按vol-, 然后连接type-C，串口打印出现`Fastboot: Processing commands`则进入fastboot。
 
-![image011](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281740947.png)
+![image011](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281740947.png)
 \- 2 `win + R`打开`cmd`，用fastboot烧写编译出来的镜像 
 
 ```
@@ -412,7 +412,7 @@ fastboot flash vendor vendor.img
 fastboot reboot 
 ```
 
-![image012](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281741449.png)
+![image012](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281741449.png)
 完成后系统重启进入Android桌面。
 
-![image014](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202303281741637.png)
+![image014](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202303281741637.png)

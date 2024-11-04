@@ -53,14 +53,14 @@ Markdown文档本身是可移植的，但是其图片资源不是, 因为图片�
 
 最终我的配置如下：
 
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202202281014786.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202202281014786.png)
 
 单元测试：
 手动上传本地图片，如果上传成功，且图片可预览，则功能正常
 
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202202281024870.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202202281024870.png)
 
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202202281024344.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202202281024344.png)
 
 遇到的坑：
 仓库名必须填<用户名><仓库名>，不是完整的http或git仓库链接！否则上传图片error404
@@ -80,14 +80,14 @@ https://raw.githubusercontent.com/账户名/图床仓库名/master
 
 对于已发布的博客的图床链接，直接用VSCode全局查找替换以上前缀即可，后面的图片id是不变的。
 
-![image-20240423135401997](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404231354103.png)
+![image-20240423135401997](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404231354103.png)
 
 **如何删除Github图床的图片：**
 PicGo默认的Github图床不能通过相册删除github仓库的图片，需要使用第三方插件github-plus，建议作为默认图床工具，支持相册删除同步到github仓库:
 
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202202281208516.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202202281208516.png)
 
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202202281209075.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202202281209075.png)
 
 ## Obsidian配置指南
 
@@ -96,12 +96,12 @@ PicGo默认的Github图床不能通过相册删除github仓库的图片，需要
 流程参考[# 在Obsidian中使用图床实现“一次上传、多次搬运”省心又省力](https://www.jianshu.com/p/4c30495f4325)
 
 重点部分：配置自动上传插件。写Markdown文章时粘贴的图片自动上传到Github+PicGo图床，无需手动上传和写链接
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202202281029686.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202202281029686.png)
 
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202202281029586.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202202281029586.png)
 
 可以看到，此插件相当于一个PicGo客户端，而本地运行的PicGo Server已开启端口36677的监听。
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202202281033479.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202202281033479.png)
 
 单元测试：
 以上配置好后，Obsidian新建一个Markdown文档，粘贴图片会显示updating... ，成功后可在github图床仓库看到该图片，且Markdown本地预览也可以看到。
@@ -114,10 +114,10 @@ PicGo默认的Github图床不能通过相册删除github仓库的图片，需要
 
 ###  实时预览和标题大纲
 实时预览是你写一句Markdown，自动转换成预览格式，而不显示Markdown源码。这样不需要开两个窗口，一个写源码一个看预览。在设置->编辑器里开启。
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202202281103907.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202202281103907.png)
 
 标题大纲是侧边栏显示文章标题列表，就像word的导航窗口一样。在设置-核心插件开启。
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202202281104255.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202202281104255.png)
 
 ## Typora配置指南
 
@@ -131,7 +131,7 @@ win+R， regedit， 在计算机\HKEY_CURRENT_USER\SOFTWARE\Typora文件夹右�
 
 ### typora图床自动上传
 
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404181658086.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404181658086.png)
 
 ### 自动标题编号
 
@@ -297,13 +297,13 @@ hexo要使用next, 在hexo配置文件设置:
 > theme: next
 
 hexo clean, hexo g, hexo s 跑本地服务，看一下效果：
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202203041651883.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202203041651883.png)
 
 最后hexo clean, g, d 命令三连部署到github
 
 访问https://cursorhu.github.io/
 
-![image-20240423155947426](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404231559552.png)
+![image-20240423155947426](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404231559552.png)
 
 ## 附录：typora自动编号代码
 

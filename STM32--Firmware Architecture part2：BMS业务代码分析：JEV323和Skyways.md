@@ -16,15 +16,15 @@ o2link FWs指三类：
 
 - bootloader：放在Flash的0x0800_0000 ~ 0x0x0800_8000空间，空间32KB；用作USB上位机烧录Firmware到Flash功能。
 
-  ![image-20240517103655180](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171036206.png)
+  ![image-20240517103655180](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171036206.png)
 
 - Firmware: 放在Flash的0x0800_8000~ 0x0801_0000空间，空间32KB；用作处理USB上位机下发的各种控制、读写请求。
 
-  ![image-20240517103700830](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171037852.png)
+  ![image-20240517103700830](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171037852.png)
   
   bootloader和Firmware所有代码在Flash的分布如下：
 
-![image-20240517111755697](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171117725.png)
+![image-20240517111755697](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171117725.png)
 
 注意：ROM/RAM空间分布对应到.sct的配置内容需要特别小心：
 
@@ -68,7 +68,7 @@ LR_IROM1 0x08008000 0x00008000  {    ; load region size_region
 
 - Firmware: 放在Flash的0x0800_0000~ 0x0801_0000空间，空间64KB；用作处理USB上位机下发的各种控制、读写请求。
 
-  ![image-20240517103730129](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171037152.png)
+  ![image-20240517103730129](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171037152.png)
 
 3.RAM空间的分布
 
@@ -112,7 +112,7 @@ jev323 firmware目前是内部测试用，因此不需要IAP，用Jlink的ICP方
 
 - firmware在执行时，如果收到USB上位机的IAP命令(USB_IAP_JUMP_TO_BOOT)，就是要跳转到bootloader，准备IAP去下载新的firmware bin；其他情况不会跳转到bootloader。
 
-![image-20240517105536135](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171055206.png)
+![image-20240517105536135](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171055206.png)
 
 ## bootloader代码分析（重要+难点）
 
@@ -157,7 +157,7 @@ check_if_jump_to_app():
 
    目的：根据原例图，可能是防止和one-wire功能冲突？待确认
 
-   ![image-20240517113801021](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171138048.png)
+   ![image-20240517113801021](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171138048.png)
 
 ### bootloader跳转到FW代码的过程
 
@@ -209,7 +209,7 @@ check_if_jump_to_app():
 
 Cortex M0的限制：Flash的中断向量表一定要放在Flash开始的地方，不能relocation到Flash的其他偏移地址，参考Reference Manual RM0091：
 
-![image-20240517172328661](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171723698.png)
+![image-20240517172328661](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171723698.png)
 
 Firmware中断向量表是放在Flash的32KB offset的地方，是不能被硬件使用的；
 
@@ -244,17 +244,17 @@ __HAL_REMAPMEMORY_SRAM();
 
    不管谁被remap为CPU memory空间，pc取指令都可以用0x0800_0000 + offset访问Flash，0x2000_0000 + offset访问SRAM
 
-   ![image-20240517174752681](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171747713.png)
+   ![image-20240517174752681](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171747713.png)
 
 2. CPU remap只影响”MCU的0地址在哪个设备空间“，和启动位置相关；
 
    SYSCFG register的CPU memory mapping定义：
 
-   ![image-20240517174553060](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171745110.png)
+   ![image-20240517174553060](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171745110.png)
 
    注意该SYSCFG register配置会被reset，即reset启动后的CPU space是BOOT0 pin和nBOOT1 register共同决定的：
 
-   ![image-20240517175619616](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171756653.png)
+   ![image-20240517175619616](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171756653.png)
 
 **Q3：Firmware和bootloader的中断向量表的指令应该差不多，为什么不能公用一套中断向量表？**
 
@@ -262,7 +262,7 @@ __HAL_REMAPMEMORY_SRAM();
 
 两套中断向量表编译出的基础地址不一样：如下图bootloader中断向量表指令都是基于0x0800_8000，FW的都是0x0800_0000。这个基础地址是.sct链接文件指定。
 
-![image-20240517185911311](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405171859345.png)
+![image-20240517185911311](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405171859345.png)
 
 **（2）跳转到Firmwware指令**
 
@@ -352,11 +352,11 @@ Keil内置安装JLink，Keil烧录.bin到开发板的Flash，实际是调用内�
 
 o2link的bootloader：
 
-![image-20240520104651534](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405201046576.png)
+![image-20240520104651534](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405201046576.png)
 
 o2link的firmware：
 
-![image-20240520104700405](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405201047437.png)
+![image-20240520104700405](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405201047437.png)
 
 ### 如何确认Flash正确烧录
 
@@ -369,13 +369,13 @@ JLink安装，需要安装包里的USB驱动：SEGGER\JLink_V796e\USBDriver\x64\
 1. JLink: Target -> Connect
 2. 读Flash(一般Range或者Entire chip)
 
-![image-20240520111220863](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405201112900.png)
+![image-20240520111220863](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405201112900.png)
 
-![image-20240520111250598](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405201112614.png)
+![image-20240520111250598](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405201112614.png)
 
 3. 保存数据到.bin
 
-![image-20240520111256831](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405201112851.png)
+![image-20240520111256831](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405201112851.png)
 
 4. 比较bootloader.bin和从Flash读出的数据.bin是否一致：
 
@@ -383,7 +383,7 @@ JLink安装，需要安装包里的USB驱动：SEGGER\JLink_V796e\USBDriver\x64\
 
 左侧bootloader.bin，右侧Flash读出的bootloader；
 
-![image-20240520110440432](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405201104475.png)
+![image-20240520110440432](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405201104475.png)
 
 可见bootloader真实数据约0x7524 bytes；Flash擦除整个bootloader区域0~0x8000, 所以Flash读的后部分数据为0xFF。
 
@@ -395,7 +395,7 @@ Firmware区域比较同理，JLink的Flash读出区域改成0x08008000~0x0801000
 
 1. Firmware编译无法输出.bin文件但Keil没报错，输出了ER$$.ARM.__at_0x0800fffc文件
 
-   ![image-20240520115554066](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202405201155089.png)
+   ![image-20240520115554066](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202405201155089.png)
 
    原因：main定义了以下section，但链接器找不到这个符号，所以生成bin时报error
 

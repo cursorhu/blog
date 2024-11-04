@@ -83,9 +83,9 @@ C++中，除了传指针，也可以传引用
 
 对于函数传参，形参都是用地址值达成对实参的修改，但传指针是显式的，而传引用是编译器隐式处理的。
 指针和引用在内存中的示意图：
-![image-20221208164349783](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081643838.png)
+![image-20221208164349783](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081643838.png)
 
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081644997.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081644997.png)
 
 指针和引用的应用比较：
 引用比指针使用起来形式上更为美观，使用引用指向的内容时可以之间用引用变量名，而不像指针一样要使用*；定义引用的时候也不用像指针一样使用&取址。

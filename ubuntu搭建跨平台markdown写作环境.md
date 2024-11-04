@@ -34,18 +34,18 @@ chmod +x PicGo-2.3.1.AppImage
       "branch": "master",
       "token": "ghp_xxxxxxxxxxxxxxxxx",
       "path": "images/",
-      "customUrl": "https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master"
+      "customUrl": "https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master"
     }
 
 如果Jsdelivr挂了就用github raw url： 
 
 ```
-"customUrl": "https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master"
+"customUrl": "https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master"
 ```
 
 Picgo其他配置如下：
 
-![image-20240418173835825](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404181738880.png)
+![image-20240418173835825](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404181738880.png)
 
 Picgo配置完需要测试在GUI上传图片OK.
 
@@ -57,7 +57,7 @@ Picgo配置完需要测试在GUI上传图片OK.
 
 Picgo测试OK之后，直接配置Typora的粘贴图片 == 使用PicGo AppImage上传图片。
 
-![image-20240418171743929](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404181717983.png)
+![image-20240418171743929](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404181717983.png)
 
 注意：使用剪贴板图片上传，需要`apt install xclip`，一般系统自带。
 
@@ -173,7 +173,7 @@ cursorhu@ubuntu-PC:~/Downloads$ picgo set uploader
 
  
 
-![image-20240416171654570](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404181714768.png)
+![image-20240416171654570](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404181714768.png)
 
 
 
@@ -191,7 +191,7 @@ cursorhu@ubuntu-PC:~/Downloads$ picgo set uploader
 
 效果：不方便，粘贴图片后的上传完成链接在剪贴板上，需要再粘贴一遍才是上传到服务器的图片链接。
 
-![image-20240416170333787](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404181714278.png)
+![image-20240416170333787](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404181714278.png)
 
 ## 参考文章
 

@@ -16,6 +16,14 @@ categories: Git
     git checkout xxxbranch //本地切到某分支
     git checkout xxx/xxx //仅拉取部分目录或文件
 
+## 查看日志
+
+```
+git log //回车下一行，空格下一页，q退出
+git log --pretty=oneline //单行显示每个commit，用于查看大量提交
+git log --author=“author” //查看某人的提交
+```
+
 ## 推送到远程
 
     git add -A //推送所有修改到本地仓库
@@ -207,7 +215,25 @@ $ git branch
   ...
 ```
 
+# 账户免密码配置
 
+## 全局免密码配置
+
+### https 方式的免密码配置
+
+配置credential存储
+
+```text
+git config --global credential.helper store
+```
+
+然后在项目目录，执行git pull命令会提示输入账号密码。这次输入账号密码之后，credential store就会记住账号密码，并且当前用户目录下生成.git-credentials文件，之后就不用再输入账号密码
+
+### ssh 方式的免密码配置
+
+对每个git账户生成对应的ssh公钥-私钥即可，参考：
+
+[如何在同一电脑上生成配置多个ssh key 公钥 私钥](https://blog.csdn.net/qq_55558061/article/details/124117445)
 
 # gitignore语法
 
@@ -227,11 +253,11 @@ $ git branch
 
 A和B同时开发某项目的同一个分支，A拉取最新版本1.0后，在本地新增功能，此时B也在1.0上修改并提交到了新版本1.1到远程仓库。A在B提交之后再提交，发现自己本地的修改已是旧版本，无法直接提交，如下图是A的add,commit,push三连的结果
 
-![1631249531971_115](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051005366.png)
+![1631249531971_115](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051005366.png)
 
-![image-20221205100655798](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051006842.png)
+![image-20221205100655798](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051006842.png)
 
-![image-20221205100726224](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051007268.png)
+![image-20221205100726224](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051007268.png)
 
 ### 手动解决conflict
 
@@ -241,7 +267,7 @@ A和B同时开发某项目的同一个分支，A拉取最新版本1.0后，在�
  - 无冲突，pull代码会自动合并，直接重新三连提交即可
 
 以下是有冲突的情况
-![image-20221205100836563](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051008610.png)
+![image-20221205100836563](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051008610.png)
 
 找到冲突源码，冲突的符号定义如下：
 
@@ -249,13 +275,13 @@ A和B同时开发某项目的同一个分支，A拉取最新版本1.0后，在�
  - `======`：分割冲突块
  - `>>>>>>b699a7fc`：远程最新hash版本号的代码块
 
-![image-20221205100855921](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051008970.png)
+![image-20221205100855921](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051008970.png)
 
 修改方法：先拷贝冲突关键语句，再删除所有冲突域符号，最后只保留如下代码
-![image-20221205101900769](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051019814.png)
+![image-20221205101900769](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051019814.png)
 
 修改完后，`git add, git commit, git push`，成功提交
-![image-20221205102021265](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051020311.png)
+![image-20221205102021265](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051020311.png)
 
 查看提交后版本：`git log`
 
@@ -268,22 +294,20 @@ A和B同时开发某项目的同一个分支，A拉取最新版本1.0后，在�
 
 下面讲修改历史commit
 如下图，想修改9877的commit信息
-![image-20221205102348131](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051023197.png)
+![image-20221205102348131](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051023197.png)
 
 先rebase到之前的commit
-![image-20221205102432433](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051024479.png)
+![image-20221205102432433](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051024479.png)
 显示其后的版本属性如下
-![image-20221205102447476](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051024531.png)
+![image-20221205102447476](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051024531.png)
 修改9877的属性为edit(待编辑模式)，将原始commit改成如下内容,`:wq`保存:
 
-![image-20221205102658821](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051026868.png)
+![image-20221205102658821](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051026868.png)
 
 然后`commit --amend, rebase --continue`
-![image-20221205102751155](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051027201.png)
+![image-20221205102751155](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051027201.png)
 再查看下git og修改成功
 最后`git push`同步到远程仓库
-
-
 
 # 从分支拉取指定的commit
 
@@ -324,7 +348,7 @@ A和B都在git的master分支提交代码，一天发现master某个版本有问
     git log > ../master_backup.log
 
 截取commit log片段如图
-![image-20221205103857374](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051038438.png)
+![image-20221205103857374](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051038438.png)
 
 切到thomas分支，拉取master_backup的commit
 
@@ -353,7 +377,7 @@ cherry-pick支持多个pick一步到位
 
 ## cherry-pick的冲突问题
 cherry-pick也是合并，只要是合并代码，就可能有冲突
-![image-20221205103926181](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051039238.png)
+![image-20221205103926181](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051039238.png)
 合并单个commit,使用使用常规的冲突解决办法即可：
 
  - 到源码改冲突， `<<<< ===== >>>>`三个标记之间代码块二选一
@@ -362,7 +386,7 @@ cherry-pick也是合并，只要是合并代码，就可能有冲突
 
 ### 单个提交的冲突解决
 由于是从其他分支的commit id合并到当前分支（HEAD）,可以不加考虑的删掉`<<<<HEAD`和`====`之间的内容，采用`====`和`commit_id`之间的内容，随后删掉三个标记即可。
-![image-20221205103951579](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051039681.png)
+![image-20221205103951579](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051039681.png)
 有可能出现冲突代码块有重叠区的情况
 
     <<<< HEAD
@@ -393,8 +417,8 @@ cherry-pick也是合并，只要是合并代码，就可能有冲突
 
 ### 特殊的冲突情况
 提示有一个commit是合并的提交，即这个提交是两个分支的交汇，cherry-pick不知道以哪个分支为准
-![image-20221205104005491](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051040545.png)
-![image-20221205104017399](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051040453.png)
+![image-20221205104005491](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051040545.png)
+![image-20221205104017399](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051040453.png)
 
 如何解决：cherry-pick添加-m 1选项
 
@@ -408,7 +432,7 @@ cherry-pick也是合并，只要是合并代码，就可能有冲突
     git cherry-pick E -m 1 means using D-E, while git cherry-pick E -m 2 means using B-C-E
 
 例如选择cherry-pick commid_id -m 1, 结果如下，可手动解决冲突了
-![image-20221205104053730](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051040782.png)
+![image-20221205104053730](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051040782.png)
 注意有merge的commit,会包含其他人的更新，如果只是pick自己的代码，不需要pick带merge的commit.
 
 # 跨仓库合并代码
@@ -431,14 +455,14 @@ winmerge可以比较两个仓库所有差异，但是有些差异可能不需要
 如果只一个个打开有差异的文件去比效率太低，需要借助git定位到哪些该开发者负责的文件有改变，以及文件内哪些代码是该开发者改变的。
 
 找出某开发者A的提交改了哪些文件：
-![image-20221205104623191](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051046241.png)
+![image-20221205104623191](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051046241.png)
 
 找出具体代码：
-![](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051046320.png)
+![](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051046320.png)
 
 winmerge直接合并：
 只是一句打印差异，但是如果不用git先定位，要从左侧差异栏找出此代码，相当困难
-![image-20221205104642794](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051046886.png)
+![image-20221205104642794](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051046886.png)
 
 这样，开发者A在代码合并过程中，完全不受其他开发者B, C的差异代码干扰
 
@@ -506,7 +530,7 @@ git push -u origin master
 
 类似于Linux的软链接，子模块方式可以链接到其他项目仓库，并自动同步其他仓库最新的代码。
 
-![image-20221209110659056](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212091106114.png)
+![image-20221209110659056](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212091106114.png)
 
 1.如何创建外部repo的链接:
 

@@ -24,9 +24,9 @@ Base64算法最开始是被用于解决电子邮件数据传输问题。以前�
 
 示例：
 
- ![image-20221212143753149](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121437191.png)
+ ![image-20221212143753149](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121437191.png)
 
-![image-20221212143830525](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121438580.png)
+![image-20221212143830525](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121438580.png)
 
 上面示例将原始数据的每三个字节分为一组，按位进行分割为每6位一个字节的形式，进行转换，形成新的4个字节。空缺的两个bit用0填补。
 这四个字节才通过Base64编码表进行映射，形成最后实际的Base64编码结果。
@@ -45,7 +45,7 @@ Base64算法最开始是被用于解决电子邮件数据传输问题。以前�
 
 **Base64编码索引表**
 26个字母 * 2(大小写) + 10个数字 + 2个运算符号 = 64个字符
-![image-20221212143820653](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212121438704.png)
+![image-20221212143820653](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212121438704.png)
 
 # 5.应用场景
 http协议中，GET方式和POST方式是Http请求常用的两种方式，GET方法只能传递ASCII数据，但某些情况下会要求使用GET来传递二进制数据。

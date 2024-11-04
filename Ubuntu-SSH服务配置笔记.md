@@ -94,7 +94,13 @@ scp -r source_dir username@ip_address:/home/username/target_dir
 
 示例一：在SSH server和客户端建立后，可以使用VSCode和source insight等代码编辑工具改代码，用xftp传输代码到SSH Linux主机，用xshell远程编译。
 
-示例二：VSCode安装SSH远程开发插件，可以直接远程SSH Linux主机完成代码编辑、编译，[visualstudio.com/Remote Development using SSH](https://www.how2shout.com/how-to/how-to-login-into-ubuntu-using-ssh-from-windows-10-8-7.html#:~:text=How%20do%20I%20SSH%20into%20Ubuntu%20from%20Windows%3F,to%20Ubuntu%20server%20via%20Putty%20SSH%20client%20)
+示例二：VSCode安装SSH远程开发插件，可以直接远程SSH Linux主机完成代码编辑、编译，[visualstudio.com/Remote Development using SSH](https://code.visualstudio.com/docs/remote/ssh)
+
+VSCode安装Remote-SSH插件后，添加远程host：
+
+```
+In VS Code, select **Remote-SSH: Connect to Host...** from the Command Palette (F1, Ctrl+Shift+P) and use the same `user@hostname`
+```
 
 
 

@@ -35,11 +35,11 @@ for (i = 0; i < ARRAY_SIZE(freqs); i++) {
 
 此时的host还没有指定卡是SD还是eMMC还是SDIO，这个阶段主要做卡power up和host reset，然后对卡reset（go_idle + send_if_cond）
 
-![image-20240419152855006](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404191529248.png)
+![image-20240419152855006](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404191529248.png)
 
 对应log如下，以下CMD8 fail属于正常，因为此时还没指定是SD type
 
-![image-20240419155547556](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404191555610.png)
+![image-20240419155547556](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404191555610.png)
 
 #### 第二阶段：SD卡的初始化入口：
 
@@ -66,7 +66,7 @@ if (!(host->caps2 & MMC_CAP2_NO_MMC))
 
 host能力是指该SD/MMC/SDIO接口具体用作哪种类型，这个和平台外设的设计相关。例如飞腾Pi平台的SOC有两个SD/MMC/SDIO控制器接口：
 
-![Image 14](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404191611726.png)
+![Image 14](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404191611726.png)
 
 对于SD0控制器, 只作为SD/eMMC接口使用，因此host driver对SD0可以设置host-cap能力如下：
 
@@ -82,17 +82,17 @@ host->caps2 |= MMC_CAP2_NO_SDIO | MMC_CAP2_NO_MMC;
 
 SD spec的UHS-I流程总览：几个关键节点1～9。
 
-![image-20240419170130663](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404191701745.png)
+![image-20240419170130663](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404191701745.png)
 
 以上UHS-I流程兼容SD3.0的SDR50, SDR25, SDR12等UHS模式，以及SD2.0的HS模式, DS模式：
 
-![image-20240419162710488](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404191627573.png)
+![image-20240419162710488](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404191627573.png)
 
 ##### SD卡初始化的接口概念
 
 如下图SD host和card接口，卡初始化过程最核心的工作就是协商host侧和card侧的能力，最终以双方都能支持的最高速度通信，即完成卡初始化。
 
-![image-20240419201436682](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404192014746.png)
+![image-20240419201436682](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404192014746.png)
 
 所谓高速通信，无外乎以下几点：
 
@@ -138,7 +138,7 @@ mmc_sd_init_card：
 
 节点2：CMD8应该设置arg[19:8] = 1aa,  1 来自前面host ocr = 2.7-3.6V support.
 
-![image-20240419165618097](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404191656210.png)
+![image-20240419165618097](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404191656210.png)
 
 有时候CMD41没设置arg bit24=1, 可能是host cap没有正确配置：
 
@@ -149,7 +149,7 @@ mmc->ocr_avail_sd = MMC_VDD_32_33 | MMC_VDD_33_34;
 
 节点3：CMD41应该设置arg bit24  = 1去查询卡是否支持S18R，去切换信号电到1.8V， 这个切换能力决定是否启动后面的UHS模式的初始化。这个CMD41有一定retry次数。
 
-![image-20240419170626765](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404191706848.png)
+![image-20240419170626765](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404191706848.png)
 
 有时候CMD41没设置arg bit24=1, 可能是host cap没有使能UHS模式和4bit bus width
 
@@ -192,7 +192,7 @@ if(host->sd0){
 
 另外的方式是设备树中添加property描述，通过mmc_of_parse解析能力，参考：https://gitee.com/phytium_embedded/phytium-linux-kernel/issues/I9H1ZS?from=project-issue
 
-![image-20240422110810589](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404221108662.png)
+![image-20240422110810589](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404221108662.png)
 
 DTS位于arch/arm/boot/dts, 用于描述某个开发板的设备信息；DTS是.dts或.dtsi后缀，dtsi是共性的dts配置，相当于头文件可被dts include。
 
@@ -228,7 +228,7 @@ DTS位于arch/arm/boot/dts, 用于描述某个开发板的设备信息；DTS是.
 
 开始UHS下半部分：
 
-![image-20240419170130663](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404191701745.png)
+![image-20240419170130663](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404191701745.png)
 
 ```
 mmc_sd_init_card：
@@ -261,7 +261,7 @@ mmc_sd_init_card end.
 
 注释2：SSR register包含卡的bus width，secured mode，card type等卡功能的配置
 
-![image-20240419180712652](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404191807768.png)
+![image-20240419180712652](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404191807768.png)
 
 注释3：切换到UHS模式的条件：
 
@@ -277,13 +277,13 @@ if (rocr & SD_ROCR_S18A && mmc_host_uhs(host)) {
 
 注释5：tuning是高速模式下利用特定模式的数据（tuning block pattern）去模拟测试数据读写的CRC错误率，来反馈微调SD host和card接口的时钟频率，数据采样相位等，以适配不同PCB环境对高速信号干扰；如下图。
 
-![image-20240419204049080](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404192040132.png)
+![image-20240419204049080](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404192040132.png)
 
 注意：UHS较低速的SDR12～SDR25 < SDR50 < 100MHz的，不需要tuning, SDR50可以tuning也可以不tuning。
 
 注意：tuning需要SD host硬件支持，有的host时钟分频能支持UHS SDR104但不支持tuning，如下图的SDR fixed-delay， 此时SD UHS卡最高只能工作在SDR50 <100MHz的速度，即这种host最高只能支持UHS SDR50模式。
 
-![image-20240419203428136](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202404192034201.png)
+![image-20240419203428136](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202404192034201.png)
 
 ##### **SD卡初始化（下半部分-part2）：HS模式（SD2.0）配置**
 

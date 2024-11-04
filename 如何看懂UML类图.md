@@ -14,7 +14,7 @@ UML从目标系统的不同角度出发，定义了用例图、类图、对象�
 # 类图
 类（Class）是指具有相同属性、方法和关系的对象的抽象，它封装了数据和行为，是面向对象程序设计（OOP）的基础，具有封装性、继承性和多态性等三大特性。在 UML 中，类使用包含类名、属性和操作且带有分隔线的矩形来表示。
 首先讲解关系, 先来看一个例子：
-![image-20221205114810203](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051148263.png)
+![image-20221205114810203](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051148263.png)
 
 分析一下上面的图, 首先从动物开始
 动物是一个类 动物依赖氧气和水
@@ -29,10 +29,10 @@ UML从目标系统的不同角度出发，定义了用例图、类图、对象�
 
 ## 类
 类一般是用三层矩形框表示，第一层表示类的名称，第二层表示的是字段和属性，第三层则是类的方法。第一层中，如果是抽象类，需用斜体显示
-![image-20221205114819689](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051148740.png)
+![image-20221205114819689](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051148740.png)
 
 ## 类符号
-![image-20221205114830981](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051148030.png)
+![image-20221205114830981](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051148030.png)
 看上面的学生类里面有五个属性和两个方法
 
     +号表示公共的 public
@@ -43,24 +43,24 @@ UML从目标系统的不同角度出发，定义了用例图、类图、对象�
 括号内表示参数，后面是返回类型, 没有表示无返回值
 ## 包
 包(Package)： 是一种常规用途的组合机制。在UML中用一个Tab框表示，Tab里写上包的名称，框里则用来放一些其他子元素，比如类，子包等等。
-![image-20221205114837947](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051148985.png)
+![image-20221205114837947](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051148985.png)
 
 ## 接口
 接口(interface)：接口包含操作但不包含属性，且它没有对外界可见的关联
-![image-20221205114843929](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051148968.png)
+![image-20221205114843929](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051148968.png)
 
 ## 关系
 ### 依赖
 依赖(Dependency) 表示的是类之间的调用关系。UML中用带箭头的虚线表示依赖关系，而箭头所指的则是被依赖的类。
-![image-20221205114849672](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051148704.png)
+![image-20221205114849672](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051148704.png)
 
 ### 泛化
 泛化(Generalization)： 表示的是类之间的继承关系，注意是子类指向父类。UML中用带空心三角箭头的实线表示泛化关系，箭头指向的是一般个体。
-![image-20221205114855112](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051148143.png)
+![image-20221205114855112](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051148143.png)
 
 ### 关联
 关联(Association) 表示的是类与类之间存在某种特定的对应关系。UML中用双向带箭头的虚线表示关联关系，箭头两端为相互关联的两个类
-![image-20221205114902153](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051149187.png)
+![image-20221205114902153](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051149187.png)
 
 ### 聚合
 聚合(Aggregation)： 是关联关系的一种特例，表示的是整体与部分之间的关系，部分不能离开整体单独存在。UML中用空心菱形头的实线表示聚合关系，菱形头指向整体
@@ -68,4 +68,4 @@ UML从目标系统的不同角度出发，定义了用例图、类图、对象�
 
 ### 组合
 组合(Composition)： 是聚合的一种特殊形式，表示的是类之间更强的组合关系。UML中用实心菱形头的实线来表示组合，菱形头指向整体。
-![image-20221205114949528](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212051149567.png)
+![image-20221205114949528](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051149567.png)

@@ -103,16 +103,16 @@ Debug选项:
 gcc可以使用-p选项指定生成信息以供porf使用.
 
 # gcc配置选项
-![6](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081727329.png)
+![6](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081727329.png)
 
 # gcc常用选项
 
-![1](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081725642.png)
+![1](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081725642.png)
 
-![2](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081726685.png)
+![2](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081726685.png)
 
-![3](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081726022.png)
+![3](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081726022.png)
 
-![4](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081726272.png)
+![4](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081726272.png)
 
-![5](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202212081727091.png)
+![5](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212081727091.png)

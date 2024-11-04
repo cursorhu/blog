@@ -122,11 +122,11 @@ INF详细WDK 文档：https://learn.microsoft.com/en-us/windows-hardware/drivers
 
 1. IDA打开.sys (有pdb文件更好)，找到DriverEntry入口
 
-   ![image-20240816154137481](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202408161541633.png)
+   ![image-20240816154137481](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202408161541633.png)
 
 2. F5显示成C伪代码，可以双击函数跳转
 
-   ![image-20240816154235494](https://cdn.jsdelivr.net/gh/cursorhu/blog-images-on-picgo@master/images/202408161542515.png)
+   ![image-20240816154235494](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202408161542515.png)
 
 3. 详细分析一下Driver Entry做了什么：
 

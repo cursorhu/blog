@@ -37,7 +37,7 @@ Putty连接串口需要以root用户启动。非root用户启动putty无法设�
 - 以root启动putty GUI，在GUI中配置端口号，波特率等参数。
 - 以命令行sudo启动putty，在启动参数中配置端口号，波特率等参数。
 
-以root启动putty GUI：对于Ubuntu 22.04 Wayland桌面，使用`sudo -E program`启动GUI。
+以root启动putty GUI：对于Ubuntu 22.04 Wayland桌面，使用`sudo -E putty`启动putty GUI。
 
 参考：https://wiki.archlinux.org/title/Running_GUI_applications_as_root
 
@@ -138,7 +138,7 @@ less putty-bh201-tuning-error2.log
 设置工具链环境变量+交叉编译命令如下：
 
 ```
-set_env.sh:
+set_env.sh: 注意要用source执行才是export配置到当前环境变量，用sh或者./sh都是配置到子shell进程环境
 
 export PATH=$PATH:"/opt/toolchains/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin"
 export CROSS_COMPILE=aarch64-linux-gnu-

@@ -43,11 +43,14 @@ git log --author=“author” //查看某人的提交
 
 创建分支并关联远程
 
-    git checkout -b BRANCH_NAME //本地创建分支
+    git checkout -b BRANCH_NAME //本地创建分支(包含当前分支的历史提交记录)
     git push origin BRANCH_NAME //推送到远程
     git push --set-upstream origin BRANCH_NAME //关联远程，便于以后分支pull/push
+    
+    #创建不带历史提交记录的新分支（孤儿分支）
+    git checkout --orphan BRANCH_NAME
 
-删除本地分支    
+删除本地分支  
 
     git branch -d branch_name
     git branch -D branch_name //强制删除
@@ -56,9 +59,12 @@ git log --author=“author” //查看某人的提交
 
     git push origin -d branch_name
 
-分支重命名(本地)
+分支重命名
 
-    git branch -m OLD_NAME NEW_NAME
+    git branch -m OLD_NAME NEW_NAME //本地分支重命名
+    git push origin NEW_NAME //推送远程
+    #推送新分支到远程不会删除远程的旧分支，需要手动删除远程的旧分支
+    git push origin -d 旧分支名
 
 ## 更换远程
 

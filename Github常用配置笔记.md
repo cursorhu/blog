@@ -10,9 +10,11 @@ categories: Git
 
 配置SSH登录的目的是git操作免密码验证，方便拉取和上传代码。
 
-参考：https://segmentfault.com/a/1190000043924833
+参考：https://segmentfault.com/a/1190000043924833 (若要为个人和公司使用不同git账号，见此链接)
 
-下面是全局使用唯一的git账号和SSH key；若要为个人和公司使用不同git账号，参考链接。
+下面windows环境创建全局使用唯一的git账号和SSH key；
+
+Linux环境创建SSH key，先查看~/.ssh有没有key，如果没有key或者有key但git clone有问题，可以删除key再重新创建id_rsa.pub
 
 ```
 cursorhu@DESKTOP-73G2O3N MINGW64 /c/gitlab-bht
@@ -41,7 +43,7 @@ $ cat /c/Users/cursorhu/.ssh/id_rsa.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDONvU2p10NVjRhu6UGlEMsRWqhbo16zK2Tnqg8....chI60tVZHozCK9PMKZd4dE9RoYMXpJWTo6uIRKEV41qHfaiipfsu1ibRCj1drz/3BTs= cursorhu
 ```
 
-最后将id_rsa.pub公钥内容添加到github或者gitlab或其他git server的账号设置页面中，无需登录即可git clone，git push。
+最后将id_rsa.pub公钥内容文本粘贴到github/gitlab的git账号设置页面中，之后无需登录密码即可git clone，git push。
 
 ```
 cursorhu@DESKTOP-73G2O3N MINGW64 /c/gitlab-bht
@@ -112,6 +114,7 @@ Resolving deltas: 100% (9621/9621), done.
 
     ls -al ~/.ssh
     ssh-keygen -t rsa -C "github用户名"
+    全部回车默认，生成key
     cat ~/.ssh/id_rsa.pub
 ![image-20221205111721197](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202212051117255.png)
 在push三连过程可以设置global全局配置，以后默认push到github
